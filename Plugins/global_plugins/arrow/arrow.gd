@@ -13,6 +13,7 @@ func on_spawn():
 		if event is InputEventScreenDrag:
 			if instance != null and head != null:
 				head.position = ApiNodes.TouchCamera2D.project_position(event.position) - instance.global_position
+				head.position -= head.size/2.0
 		if event is InputEventScreenTouch:
 			if event.is_pressed():
 				var pos = ApiNodes.TouchCamera2D.project_position(event.position)

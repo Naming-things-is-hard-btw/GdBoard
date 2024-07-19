@@ -31,6 +31,12 @@ func _get_info():
 
 func _init():
 	super._init()
+	polygon.polygon.clear()
+	polygon.polygon = [
+		Vector2(0,-3 * line_width),
+		Vector2(10 * line_width,0),
+		Vector2(0,3 * line_width),
+	]
 	add_child(line, true, Node.INTERNAL_MODE_FRONT)
 	add_child(polygon, true, Node.INTERNAL_MODE_FRONT)
 	polygon.visible = false
