@@ -20,10 +20,10 @@ func on_spawn() -> void:
 		print("pressed1")
 		)
 	ApiNodes.UI_TOOL_MENU.add_item("Edit Theme", "Editor", func():
-		print("pressed1")
+		print("pressed0")
 		)
 	ApiNodes.UI_TOOL_MENU.add_item("Report a Bug", "Help", func():
-		print("pressed1")
+		print("pressed5")
 		)
 	ApiNodes.UI_TOOL_MENU.add_item("Suggest a Feature", "Help", func():
 		print("pressed1")
