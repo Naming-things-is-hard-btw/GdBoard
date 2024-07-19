@@ -50,7 +50,6 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-corner_detail = 5
 shadow_color = Color(0.505882, 1, 0.666667, 1)
 
 [sub_resource type="StyleBoxEmpty" id="4"]
@@ -101,7 +100,7 @@ theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_styles/disabled = SubResource("StyleBoxFlat_6budn")
 disabled = true
-text = "GDBoard"
+text = "GdBoard"
 icon = ExtResource("3_as4lr")
 flat = false
 

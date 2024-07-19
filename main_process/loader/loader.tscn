@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://jemdviwbkhmo"]
+[gd_scene load_steps=6 format=3 uid="uid://jemdviwbkhmo"]
 
 [ext_resource type="Script" path="res://main_process/loader/loader.gd" id="1_swiym"]
-[ext_resource type="Texture2D" uid="uid://dy4q673rr42j4" path="res://icon.png" id="2_jjjvv"]
 
 [sub_resource type="Animation" id="Animation_m6vjj"]
 length = 0.001
@@ -142,12 +141,12 @@ theme_override_constants/margin_top = 150
 theme_override_constants/margin_bottom = 250
 
 [node name="button" type="Button" parent="Loader/MarginContainer"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 60
-text = "Loading GDBOARD..."
-icon = ExtResource("2_jjjvv")
+text = "Loading.."
 flat = true
 expand_icon = true
 

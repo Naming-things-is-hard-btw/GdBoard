@@ -38,19 +38,19 @@ func on_spawn() -> void:
 		print("pressed0")
 		)
 	
-	ApiNodes.UI_TOOL_MENU.add_item("Changelog", "Help", func():
-		
+	ApiNodes.UI_TOOL_MENU.add_item("Changelog [itch.io page]", "Help", func():
+		OS.shell_open("https://ampi-dev.itch.io/gdboard")
 		)
 	ApiNodes.UI_TOOL_MENU.add_item("Report a Bug", "Help", func():
-		OS.shell_open("https://github.com/Naming-things-is-hard-btw/GDBoard/issues")
+		OS.shell_open("https://github.com/Naming-things-is-hard-btw/GdBoard/issues")
 		)
 	ApiNodes.UI_TOOL_MENU.add_item("Suggest a Feature", "Help", func():
 		OS.shell_open("https://github.com/Naming-things-is-hard-btw/GdBoard_feature_suggestions/issues")
 		)
 	ApiNodes.UI_TOOL_MENU.add_item("Contribute", "Help", func():
-		OS.shell_open("https://github.com/Naming-things-is-hard-btw/GDBoard")
+		OS.shell_open("https://github.com/Naming-things-is-hard-btw/GdBoard")
 		)
-	ApiNodes.UI_TOOL_MENU.add_item("About Gdboard", "Help", func():
+	ApiNodes.UI_TOOL_MENU.add_item("About", "Help", func():
 		var window = preload("res://Plugins/_tool_menu/about/about window.tscn").instantiate()
 		ApiNodes.UI_MAIN_LAYOUT.popup(window)
 		)

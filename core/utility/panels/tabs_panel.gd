@@ -59,7 +59,6 @@ func _ready():
 		await get_tree().process_frame
 		await get_tree().process_frame
 		var p_name = ApiNodes.Plugins.selected_plugin
-		print("Aw")
 		for a in get_children():
 			if a.get_meta("owner_plugin").name.find(p_name) == 0:
 				press(a)

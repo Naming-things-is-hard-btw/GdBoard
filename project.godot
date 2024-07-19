@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GDBOARD"
+config/name="Giro"
 run/main_scene="res://main_process/loader/loader.tscn"
 config/auto_accept_quit=false
 config/quit_on_go_back=false

@@ -125,7 +125,7 @@ size_flags_vertical = 3
 metadata/hahaha = false
 
 [node name="SubViewport" parent="Control/Canvas" index="0"]
-size = Vector2i(1142, 638)
+size = Vector2i(2, 2)
 
 [node name="brushes" type="Control" parent="Control" node_paths=PackedStringArray("brushes_ui")]
 layout_mode = 1
