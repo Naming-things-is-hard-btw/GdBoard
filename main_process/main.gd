@@ -15,9 +15,11 @@ func update_plugins():
 	pass
 
 func _hide():
-	$MainLayout.visible = false
+	$MainLayout.z_index = -10
+	$"block input".visible = true
 	pass
 
 func _show():
-	$MainLayout.visible = true
+	$MainLayout.z_index = 0
+	$"block input".visible = false
 	pass

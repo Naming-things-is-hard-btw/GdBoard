@@ -169,6 +169,7 @@ func register_as_tab(tabname : String, icon : Texture2D, project_owned = true):
 	tab_button.connect("pressed", func():
 		if not Projects.is_project_open and project_owned: return
 		get_parent_plugin().select_plugin(name))
+	get_ui_tabs_panel().add_child(tab_button, true)
 	pass
 
 func remove_plugin(tool_name : String):

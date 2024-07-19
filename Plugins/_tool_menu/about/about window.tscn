@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://da8oe5t8beutl"]
+
+[ext_resource type="Script" path="res://Plugins/_tool_menu/about/about_window.gd" id="1_arne7"]
+[ext_resource type="PackedScene" uid="uid://b8cj0ijhlxn5j" path="res://Plugins/_tool_menu/about/about.tscn" id="1_ejkte"]
+
+[node name="AboutWindow" type="Window"]
+title = "About"
+initial_position = 2
+size = Vector2i(635, 410)
+transient = true
+exclusive = true
+script = ExtResource("1_arne7")
+
+[node name="About" parent="." instance=ExtResource("1_ejkte")]
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

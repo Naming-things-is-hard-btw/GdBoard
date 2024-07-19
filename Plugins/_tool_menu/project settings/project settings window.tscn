@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xyuwti4mq0mk"]
+
+[ext_resource type="Script" path="res://Plugins/_tool_menu/project settings/project_settings_window.gd" id="1_koa52"]
+[ext_resource type="PackedScene" uid="uid://btwhpv8smbrtr" path="res://Plugins/_tool_menu/project settings/project settings.tscn" id="1_wqa1s"]
+
+[node name="ProjectSettingsWindow" type="Window"]
+title = "Project Settings"
+initial_position = 1
+size = Vector2i(680, 460)
+transient = true
+exclusive = true
+script = ExtResource("1_koa52")
+
+[node name="ProjectSettings" parent="." instance=ExtResource("1_wqa1s")]
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

@@ -15,7 +15,6 @@ func clear_buttons():
 
 var tween0
 var tween1
-#var tween3
 
 var last_button : Button
 
@@ -43,7 +42,6 @@ func add_button(icon : Texture2D, text : String = "") -> Button:
 	button.text = text
 	button.icon = icon
 	button.flat = true
-	add_child(button, true)
 	button.mouse_filter = Control.MOUSE_FILTER_PASS
 	if get_child_count() <= 1:
 		selectionpanel.global_position = button.global_position
@@ -56,16 +54,29 @@ func _ready():
 			if a.get_meta("owner_plugin").name.find(p_name) == 0:
 				press(a)
 		)
-	child_entered_tree.connect(func():
+	child_entered_tree.connect(func(node):
+		await get_tree().process_frame
+		await get_tree().process_frame
+		await get_tree().process_frame
+		var p_name = ApiNodes.Plugins.selected_plugin
+		print("Aw")
+		for a in get_children():
+			if a.get_meta("owner_plugin").name.find(p_name) == 0:
+				press(a)
+		)
+	child_exiting_tree.connect(func(node):
+		await get_tree().process_frame
+		await get_tree().process_frame
+		await get_tree().process_frame
 		var p_name = ApiNodes.Plugins.selected_plugin
 		for a in get_children():
 			if a.get_meta("owner_plugin").name.find(p_name) == 0:
 				press(a)
 		)
-	child_exiting_tree.connect(func():
-		var p_name = ApiNodes.Plugins.selected_plugin
-		for a in get_children():
-			if a.get_meta("owner_plugin").name.find(p_name) == 0:
-				press(a)
+	resized.connect(func():
+		await get_tree().process_frame
+		if not is_instance_valid(last_button): return
+		selectionpanel.position = last_button.position
+		selectionpanel.size = last_button.size
 		)
 	pass

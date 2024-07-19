@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://8cqwne1r2onc"]
+
+[ext_resource type="PackedScene" uid="uid://yas41ody7o8q" path="res://Plugins/_tool_menu/editor settings/editor settings.tscn" id="1_mn88y"]
+[ext_resource type="Script" path="res://Plugins/_tool_menu/editor settings/editor_settings_window.gd" id="1_ukko5"]
+
+[node name="EditorSettingsWindow" type="Window"]
+title = "Editor Settings"
+initial_position = 2
+size = Vector2i(715, 420)
+transient = true
+exclusive = true
+script = ExtResource("1_ukko5")
+
+[node name="EditorSettings" parent="." instance=ExtResource("1_mn88y")]
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
