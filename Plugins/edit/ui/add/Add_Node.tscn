@@ -1,0 +1,196 @@
+[gd_scene load_steps=22 format=3 uid="uid://bp74y1rq84gp2"]
+
+[ext_resource type="StyleBox" uid="uid://bjmnyu14xkuld" path="res://theme/PANEL/panel_in.tres" id="1_10uss"]
+[ext_resource type="StyleBox" uid="uid://da7kp4v152h16" path="res://theme/PANEL/panel_out.tres" id="1_wd0uu"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/add.gd" id="2_65lq4"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/PanelContainer.gd" id="3_wr1jp"]
+[ext_resource type="Texture2D" uid="uid://bh0lcjgtfdqhx" path="res://theme/modern_icons/search.svg" id="4_6s3n8"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/search.gd" id="5_g54dw"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/spawner.gd" id="7_o44jt"]
+[ext_resource type="Script" path="res://Plugins/view/viewport/graph_editor/touch_camera.gd" id="8_6h8bc"]
+[ext_resource type="Texture2D" uid="uid://ce8aa3vqkmkdy" path="res://theme/modern_icons/arrow_back.svg" id="8_k1h0p"]
+[ext_resource type="Texture2D" uid="uid://b4jacmn3k3rkw" path="res://theme/modern_icons/add_box.svg" id="10_j5baw"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/close.gd" id="11_6iodo"]
+[ext_resource type="Texture2D" uid="uid://dj0o4aqlgpsme" path="res://theme/modern_icons/delete.svg" id="12_i5yvh"]
+[ext_resource type="Texture2D" uid="uid://d4ijag8k0w5xn" path="res://theme/modern_icons/import.svg" id="12_wu2df"]
+[ext_resource type="Theme" uid="uid://beqr2gmnqp8dk" path="res://theme/mctheme.tres" id="12_yaqrh"]
+[ext_resource type="Texture2D" uid="uid://4gwy3j2yh75c" path="res://theme/modern_icons/export.svg" id="13_koehl"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/addbutton.gd" id="13_krl6e"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/import.gd" id="13_st7u3"]
+[ext_resource type="Texture2D" uid="uid://di70u26awprlj" path="res://theme/modern_icons/fav.svg" id="14_lphsk"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/delete.gd" id="15_8jouv"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/export.gd" id="15_u85if"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/add_to_favorates.gd" id="16_la2d2"]
+
+[node name="AddNode" type="PanelContainer" node_paths=PackedStringArray("scene_container", "scene_spawner", "delete_node")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_10uss")
+script = ExtResource("2_65lq4")
+scene_container = NodePath("HSplitContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/scene_container")
+scene_spawner = NodePath("HSplitContainer/VBoxContainer/spawner")
+delete_node = NodePath("HSplitContainer/VBoxContainer/flow/delete")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1_wd0uu")
+script = ExtResource("3_wr1jp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="search" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer" node_paths=PackedStringArray("scene_container")]
+layout_mode = 2
+placeholder_text = "Search"
+right_icon = ExtResource("4_6s3n8")
+script = ExtResource("5_g54dw")
+scene_container = NodePath("../ScrollContainer/MarginContainer/scene_container")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="scene_container" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="BoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+vertical = true
+
+[node name="spawner" type="Control" parent="HSplitContainer/VBoxContainer" node_paths=PackedStringArray("root", "cam", "vp")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+script = ExtResource("7_o44jt")
+root = NodePath("SubViewportContainer/SubViewport/root")
+cam = NodePath("SubViewportContainer/SubViewport/Camera2D")
+vp = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HSplitContainer/VBoxContainer/spawner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HSplitContainer/VBoxContainer/spawner/SubViewportContainer"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(813, 590)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="HSplitContainer/VBoxContainer/spawner/SubViewportContainer/SubViewport"]
+script = ExtResource("8_6h8bc")
+
+[node name="root" type="Node2D" parent="HSplitContainer/VBoxContainer/spawner/SubViewportContainer/SubViewport"]
+
+[node name="flow" type="FlowContainer" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="close" type="Button" parent="HSplitContainer/VBoxContainer/flow"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+icon = ExtResource("8_k1h0p")
+script = ExtResource("11_6iodo")
+
+[node name="import" type="Button" parent="HSplitContainer/VBoxContainer/flow"]
+layout_mode = 2
+icon = ExtResource("12_wu2df")
+script = ExtResource("13_st7u3")
+
+[node name="import project" type="FileDialog" parent="HSplitContainer/VBoxContainer/flow/import"]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 2
+size = Vector2i(729, 464)
+theme = ExtResource("12_yaqrh")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.ItemGroup; GDBOARD Item Group Export")
+use_native_dialog = true
+
+[node name="addbutton" type="Button" parent="HSplitContainer/VBoxContainer/flow" node_paths=PackedStringArray("noderoot", "spawner")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "Add"
+icon = ExtResource("10_j5baw")
+script = ExtResource("13_krl6e")
+noderoot = NodePath("../../spawner/SubViewportContainer/SubViewport/root")
+spawner = NodePath("../../spawner")
+
+[node name="export" type="Button" parent="HSplitContainer/VBoxContainer/flow" node_paths=PackedStringArray("spawner")]
+layout_mode = 2
+disabled = true
+icon = ExtResource("13_koehl")
+script = ExtResource("15_u85if")
+spawner = NodePath("../../spawner")
+
+[node name="export project" type="FileDialog" parent="HSplitContainer/VBoxContainer/flow/export"]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(769, 489)
+theme = ExtResource("12_yaqrh")
+access = 2
+root_subfolder = "/sdcard"
+use_native_dialog = true
+
+[node name="delete" type="Button" parent="HSplitContainer/VBoxContainer/flow" node_paths=PackedStringArray("spawner")]
+layout_mode = 2
+disabled = true
+icon = ExtResource("12_i5yvh")
+script = ExtResource("15_8jouv")
+spawner = NodePath("../../spawner")
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="HSplitContainer/VBoxContainer/flow/delete"]
+initial_position = 2
+size = Vector2i(254, 116)
+ok_button_text = "Delete"
+dialog_text = "Deleting cannot be undone."
+
+[node name="add_to_favorates" type="Button" parent="HSplitContainer/VBoxContainer/flow" node_paths=PackedStringArray("spawner")]
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("14_lphsk")
+script = ExtResource("16_la2d2")
+spawner = NodePath("../../spawner")
+
+[connection signal="text_changed" from="HSplitContainer/PanelContainer/VBoxContainer/search" to="HSplitContainer/PanelContainer/VBoxContainer/search" method="_on_text_changed"]
+[connection signal="file_selected" from="HSplitContainer/VBoxContainer/flow/import/import project" to="HSplitContainer/VBoxContainer/flow/import" method="_on_import"]
+[connection signal="button_down" from="HSplitContainer/VBoxContainer/flow/addbutton" to="HSplitContainer/VBoxContainer/flow/addbutton" method="_down"]
+[connection signal="file_selected" from="HSplitContainer/VBoxContainer/flow/export/export project" to="HSplitContainer/VBoxContainer/flow/export" method="_on_export"]
+[connection signal="confirmed" from="HSplitContainer/VBoxContainer/flow/delete/ConfirmationDialog" to="HSplitContainer/VBoxContainer/flow/delete" method="remove"]

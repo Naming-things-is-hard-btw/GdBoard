@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://1clol0yom7ny"]
+
+[ext_resource type="PackedScene" uid="uid://blscpxgs25d08" path="res://core/menu/base.tscn" id="1_5xchm"]
+[ext_resource type="Script" path="res://core/menu/curve/curve.gd" id="2_2mgw1"]
+[ext_resource type="Script" path="res://core/menu/curve/new.gd" id="3_jjlnq"]
+[ext_resource type="Script" path="res://core/menu/curve/curve_viewer.gd" id="3_uhef3"]
+[ext_resource type="Texture2D" uid="uid://5xjscgtj6ur" path="res://theme/icons/add.png" id="3_x52bg"]
+[ext_resource type="Script" path="res://core/menu/curve/reset.gd" id="4_0hijx"]
+[ext_resource type="Texture2D" uid="uid://c6qdkgi5tkluw" path="res://theme/icons/delete.png" id="4_72c70"]
+[ext_resource type="StyleBox" uid="uid://cxlbjn6jxnb0j" path="res://theme/button_normal.tres" id="4_768gc"]
+[ext_resource type="Script" path="res://core/menu/curve/remove.gd" id="6_h2is0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2aneo"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.027451, 0.341176, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Base" node_paths=PackedStringArray("curve") instance=ExtResource("1_5xchm")]
+script = ExtResource("2_2mgw1")
+curve = NodePath("c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve")
+
+[node name="icon" parent="c/title/Control/c" index="0"]
+visible = false
+
+[node name="c_title_c#Label" type="Label" parent="c/title/Control/c" index="1"]
+visible = false
+layout_mode = 2
+text = "اختر نقطة"
+
+[node name="c_title_c#remove" type="Button" parent="c/title/Control/c" index="2" node_paths=PackedStringArray("curve")]
+layout_mode = 2
+icon = ExtResource("3_x52bg")
+flat = true
+script = ExtResource("4_0hijx")
+curve = NodePath("../../../../main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve")
+
+[node name="c_title_c#remove2" type="Button" parent="c/title/Control/c" index="3" node_paths=PackedStringArray("curve")]
+layout_mode = 2
+icon = ExtResource("4_72c70")
+flat = true
+script = ExtResource("6_h2is0")
+curve = NodePath("../../../../main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve")
+
+[node name="BoxContainer" type="BoxContainer" parent="c/main" index="0"]
+layout_mode = 2
+vertical = true
+
+[node name="new" type="Button" parent="c/main/BoxContainer" index="0"]
+layout_mode = 2
+text = "تابع جديد"
+script = ExtResource("3_jjlnq")
+
+[node name="PanelContainer" type="PanelContainer" parent="c/main/BoxContainer" index="1"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_768gc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="c/main/BoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="c/main/BoxContainer/PanelContainer/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+text = "0,1"
+
+[node name="Control" type="Control" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer" index="2"]
+layout_mode = 2
+text = "1,1"
+
+[node name="HSeparator" type="HSeparator" parent="c/main/BoxContainer/PanelContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="c/main/BoxContainer/PanelContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="curve" type="Control" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2" index="0" node_paths=PackedStringArray("line", "points")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("3_uhef3")
+line = NodePath("Line2D")
+points = NodePath("Control")
+
+[node name="Line2D" type="Line2D" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve" index="0"]
+width = 2.0
+
+[node name="Control" type="Control" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve" index="1"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="add_delete" type="PanelContainer" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve" index="2"]
+visible = false
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2aneo")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve/add_delete" index="0"]
+layout_mode = 2
+
+[node name="delete" type="Button" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve/add_delete/HBoxContainer" index="0"]
+layout_mode = 2
+text = "حذف"
+
+[node name="add" type="Button" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve/add_delete/HBoxContainer" index="1"]
+layout_mode = 2
+text = "اضافة"
+
+[node name="HSeparator2" type="HSeparator" parent="c/main/BoxContainer/PanelContainer/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="c/main/BoxContainer/PanelContainer/VBoxContainer" index="4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" index="0"]
+layout_mode = 2
+text = "0,0"
+
+[node name="Control" type="Control" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" index="2"]
+layout_mode = 2
+text = "1,0"
+
+[connection signal="resized" from="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve" to="c/main/BoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/curve" method="_on_resized"]

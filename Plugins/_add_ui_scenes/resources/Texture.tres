@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemGroup" load_steps=4 format=3 uid="uid://b2odlqxgx5d5t"]
+
+[ext_resource type="Texture2D" uid="uid://dv8bed4v8c21t" path="res://theme/icons/drag_select.png" id="1_kng1m"]
+[ext_resource type="PackedScene" uid="uid://dxxbhbklhauv" path="res://Plugins/_add_ui_scenes/scenes/Texture.tscn" id="2_5eeej"]
+[ext_resource type="Script" path="res://core/resources/item_group.gd" id="3_ugg1i"]
+
+[resource]
+script = ExtResource("3_ugg1i")
+tag = "Core"
+item_name = "Texture"
+item_icon = ExtResource("1_kng1m")
+scene = ExtResource("2_5eeej")
+is_in_favorates = false

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemGroup" load_steps=4 format=3 uid="uid://dbtl77t71gmtt"]
+
+[ext_resource type="Texture2D" uid="uid://dtybfbxv7ljtf" path="res://theme/icons/new_ink_highlighter_move_FILL0_wght400_GRAD0_opsz24.png" id="1_3r5ls"]
+[ext_resource type="PackedScene" uid="uid://b56akor0fnbhi" path="res://Plugins/_add_ui_scenes/scenes/Text.tscn" id="1_uk3su"]
+[ext_resource type="Script" path="res://core/resources/item_group.gd" id="2_nxdok"]
+
+[resource]
+script = ExtResource("2_nxdok")
+tag = "Core"
+item_name = "Text"
+item_icon = ExtResource("1_3r5ls")
+scene = ExtResource("1_uk3su")
+is_in_favorates = false

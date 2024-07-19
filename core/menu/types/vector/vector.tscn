@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwc86mg651jyt"]
+
+[ext_resource type="Script" path="res://core/menu/types/vector/vector.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://blscpxgs25d08" path="res://core/menu/base.tscn" id="1_lxhdv"]
+[ext_resource type="PackedScene" uid="uid://umq75yaf6wwy" path="res://core/menu/types/spinbox/BetterSpinbox.tscn" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24f6o"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.364706)
+border_color = Color(0.635294, 0.635294, 0.635294, 1)
+shadow_color = Color(0, 0, 0, 0.0784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v15x"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.364706)
+border_color = Color(0.635294, 0.635294, 0.635294, 1)
+shadow_color = Color(0, 0, 0, 0.0784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8ui2"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.364706)
+border_color = Color(0.635294, 0.635294, 0.635294, 1)
+shadow_color = Color(0, 0, 0, 0.0784314)
+
+[node name="vector" instance=ExtResource("1_lxhdv")]
+script = ExtResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="c/main" index="0"]
+layout_mode = 2
+
+[node name="x" type="HBoxContainer" parent="c/main/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="c/main/VBoxContainer/x" index="0"]
+layout_mode = 2
+text = "    x        "
+
+[node name="x" parent="c/main/VBoxContainer/x" index="1" instance=ExtResource("2")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_24f6o")
+
+[node name="y" type="HBoxContainer" parent="c/main/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="c/main/VBoxContainer/y" index="0"]
+layout_mode = 2
+text = "    y        "
+
+[node name="y" parent="c/main/VBoxContainer/y" index="1" instance=ExtResource("2")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8v15x")
+
+[node name="z" type="HBoxContainer" parent="c/main/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="c/main/VBoxContainer/z" index="0"]
+layout_mode = 2
+text = "    z        "
+
+[node name="z" parent="c/main/VBoxContainer/z" index="1" instance=ExtResource("2")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k8ui2")
+
+[connection signal="pressed" from="c/title/Control/c/reset" to="." method="_on_reset_pressed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/x/x" to="." method="_on_x_on_value_changed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/y/y" to="." method="_on_y_on_value_changed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/z/z" to="." method="_on_z_on_value_changed"]

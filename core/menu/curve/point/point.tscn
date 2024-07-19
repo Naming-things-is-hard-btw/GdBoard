@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg7yphshcjxja"]
+
+[ext_resource type="Script" path="res://core/menu/curve/point/point.gd" id="1_it5ck"]
+[ext_resource type="StyleBox" uid="uid://bwddbs6kcm3wk" path="res://core/menu/curve/point/point_clear.tres" id="2_bvlmq"]
+[ext_resource type="Script" path="res://core/menu/curve/point/Control.gd" id="2_hh1xl"]
+[ext_resource type="Script" path="res://core/menu/curve/point/r_tangent.gd" id="4_y47ae"]
+[ext_resource type="Script" path="res://core/menu/curve/point/l_tangent.gd" id="5_3q3yo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svj4u"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Point" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_it5ck")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_svj4u")
+
+[node name="Control" type="Panel" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_bvlmq")
+script = ExtResource("2_hh1xl")
+
+[node name="Panel2" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_svj4u")
+
+[node name="r_tangent" type="Control" parent="Control/Panel2"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -20.0
+offset_right = 10.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_y47ae")
+
+[node name="Panel3" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -7.0
+offset_right = -5.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_svj4u")
+
+[node name="l_tangent" type="Control" parent="Control/Panel3"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -20.0
+offset_right = 10.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_3q3yo")
+
+[connection signal="mouse_entered" from="Control" to="Control" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="Control" method="_on_mouse_exited"]

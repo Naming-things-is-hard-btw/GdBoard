@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://vdq3ffbpn4te"]
+
+[sub_resource type="GDScript" id="GDScript_ap20p"]
+script/source = "extends BrushTool
+
+@export var line : Line2D
+
+func get_icon() -> Texture2D:
+	return preload(\"res://Plugins/paint2D/res/lines.png\")
+
+func start(pos : Vector2, canvas : Node2D, preview : TextureRect, old_image : TextureRect):
+	preview.use_parent_material = true
+	preview.modulate.a = 1
+	isdrawing = true
+	line.modulate = get_tree().get_nodes_in_group(\"Paint2d_Global\")[0].brush_color
+	line.width = get_tree().get_nodes_in_group(\"Paint2d_Global\")[0].brush_scale
+	line.add_point(pos)
+	line.add_point(pos)
+	line.reparent(canvas, false)
+	pass
+
+func update(pos : Vector2):
+	line.points[1] = pos
+	pass
+
+var isdrawing = false
+
+func stop():
+	dynamicstop()
+	pass
+
+func custom_blend() -> bool:
+	return false
+
+func dynamicstop():
+	line.reparent(self)
+	line.clear_points()
+	isdrawing = false
+	pass
+
+func cancel():
+	line.reparent(self)
+	isdrawing = false
+	line.clear_points()
+	pass
+"
+
+[node name="euler" type="Node2D" node_paths=PackedStringArray("line")]
+script = SubResource("GDScript_ap20p")
+line = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="."]

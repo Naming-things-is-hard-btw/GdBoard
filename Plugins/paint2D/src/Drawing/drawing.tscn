@@ -1,0 +1,466 @@
+[gd_scene load_steps=34 format=3 uid="uid://blyca1hsp3ds0"]
+
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/drawing.gd" id="1_sagsm"]
+[ext_resource type="StyleBox" uid="uid://da7kp4v152h16" path="res://theme/PANEL/panel_out.tres" id="1_uep4n"]
+[ext_resource type="Texture2D" uid="uid://31h8mec8m55y" path="res://theme/modern_icons/folder_open.svg" id="4_1mu8i"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/titlebar/new.gd" id="6_71wcb"]
+[ext_resource type="Texture2D" uid="uid://brfyctuyv5u07" path="res://theme/modern_icons/create_new.svg" id="6_aax7p"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/titlebar/save to.gd" id="7_sbtb6"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/brushes_ui/brushes_ui.gd" id="7_ssd75"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/load.gd" id="8_jxxp5"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/open.gd" id="8_ml8af"]
+[ext_resource type="PackedScene" uid="uid://b8ph8crvv4l3m" path="res://Plugins/paint2D/src/new/canvas/canvas.res" id="8_p8oku"]
+[ext_resource type="Texture2D" uid="uid://d4ijag8k0w5xn" path="res://theme/modern_icons/import.svg" id="9_cgs1s"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/export.gd" id="9_x3wfr"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/select.gd" id="11_8fukh"]
+[ext_resource type="Texture2D" uid="uid://4gwy3j2yh75c" path="res://theme/modern_icons/export.svg" id="11_vhnm7"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/ok.gd" id="12_5yyjb"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/ok_save.gd" id="13_7o463"]
+[ext_resource type="Texture2D" uid="uid://dokvlmtyhx23a" path="res://Plugins/paint2D/res/layers.png" id="13_115p2"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/save_as.gd" id="13_ar56o"]
+[ext_resource type="Texture2D" uid="uid://c0sn3nwjwdl3h" path="res://theme/modern_icons/done.svg" id="17_egecg"]
+[ext_resource type="PackedScene" uid="uid://sb2156au3cbs" path="res://Plugins/paint2D/src/new/LayersUI/Layers.tscn" id="18_c5fs0"]
+[ext_resource type="PackedScene" uid="uid://bsa25j6hjqqe2" path="res://Plugins/paint2D/src/Drawing/createnewCanvas/newcanvas.tscn" id="19_opjb7"]
+[ext_resource type="Texture2D" uid="uid://yme7k0ju3l1b" path="res://theme/modern_icons/draw.svg" id="19_tamv1"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/brush_button.gd" id="20_jdgcm"]
+[ext_resource type="Script" path="res://Plugins/paint2D/src/Drawing/brushes_ui/brushes.gd" id="24_gnreb"]
+[ext_resource type="StyleBox" uid="uid://bjmnyu14xkuld" path="res://theme/PANEL/panel_in.tres" id="25_h6jt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_extvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_huhib"]
+content_margin_left = 30.0
+content_margin_right = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn170"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.19)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.5, 0.241)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4yv4"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.771546, 0.325871, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.228171, 1, 0.527476, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tx8t"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.843959, 0.356455, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36847, 1, 0.613369, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="GDScript" id="GDScript_hikr8"]
+script/source = "extends HSlider
+
+func _ready():
+	value = get_tree().get_nodes_in_group(\"Paint2d_Global\")[0].brush_scale
+	$\"../Label\".text = str(value)
+
+func _on_value_changed(_value):
+	get_tree().get_nodes_in_group(\"Paint2d_Global\")[0].brush_scale = _value
+	$\"../Label\".text = str(value)
+"
+
+[sub_resource type="GDScript" id="GDScript_vanmu"]
+script/source = "extends Button
+
+func _pressed():
+	var rect = get_global_rect()
+	rect.position.y -= $PopupPanel.size.y
+	$PopupPanel.popup_on_parent(rect)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq6cf"]
+bg_color = Color(0, 0, 0, 0.623529)
+
+[node name="Drawing" type="PanelContainer" node_paths=PackedStringArray("canvas")]
+texture_filter = 1
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = ExtResource("1_uep4n")
+script = ExtResource("1_sagsm")
+canvas = NodePath("Control/Canvas")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Canvas" parent="Control" instance=ExtResource("8_p8oku")]
+clip_contents = true
+layout_mode = 1
+size_flags_vertical = 3
+metadata/hahaha = false
+
+[node name="SubViewport" parent="Control/Canvas" index="0"]
+size = Vector2i(1142, 638)
+
+[node name="brushes" type="Control" parent="Control" node_paths=PackedStringArray("brushes_ui")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("24_gnreb")
+brushes_ui = NodePath("brushes/BoxContainer/ScrollContainer2/BoxContainer/ScrollContainer")
+
+[node name="brushes" type="PanelContainer" parent="Control/brushes"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.146
+anchor_right = 0.869
+anchor_bottom = 0.848
+offset_left = -0.300003
+offset_top = -0.14801
+offset_right = -0.39801
+offset_bottom = -0.0240479
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = ExtResource("25_h6jt7")
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/brushes/brushes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/brushes/brushes/BoxContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/brushes/brushes/BoxContainer/ScrollContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Label" type="Label" parent="Control/brushes/brushes/BoxContainer/ScrollContainer/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Brush Color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPicker" type="ColorPicker" parent="Control/brushes/brushes/BoxContainer/ScrollContainer/BoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin = 15
+theme_override_constants/sv_width = 225
+theme_override_constants/sv_height = 225
+color_modes_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Control/brushes/brushes/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/brushes/brushes/BoxContainer/ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+
+[node name="Label" type="Label" parent="Control/brushes/brushes/BoxContainer/ScrollContainer2/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Brushes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/brushes/brushes/BoxContainer/ScrollContainer2/BoxContainer" node_paths=PackedStringArray("box")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_ssd75")
+box = NodePath("FlowContainer")
+
+[node name="FlowContainer" type="FlowContainer" parent="Control/brushes/brushes/BoxContainer/ScrollContainer2/BoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="open" type="Button" parent="Control/BoxContainer" node_paths=PackedStringArray("canvas")]
+layout_mode = 2
+text = "Open"
+icon = ExtResource("4_1mu8i")
+script = ExtResource("8_ml8af")
+canvas = NodePath("../../Canvas")
+
+[node name="FileDialog" type="FileDialog" parent="Control/BoxContainer/open"]
+auto_translate_mode = 1
+title = "Open a File"
+position = Vector2i(80, 115)
+size = Vector2i(709, 391)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="New" type="Button" parent="Control/BoxContainer" node_paths=PackedStringArray("canvas")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New"
+icon = ExtResource("6_aax7p")
+expand_icon = true
+script = ExtResource("6_71wcb")
+canvas = NodePath("../../Canvas")
+
+[node name="Window" type="Window" parent="Control/BoxContainer/New"]
+initial_position = 2
+size = Vector2i(285, 220)
+visible = false
+
+[node name="Control" parent="Control/BoxContainer/New/Window" instance=ExtResource("19_opjb7")]
+
+[node name="Control" type="Control" parent="Control/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="resize" type="Button" parent="Control/BoxContainer"]
+visible = false
+layout_mode = 2
+text = "resize viewport"
+
+[node name="import" type="Button" parent="Control/BoxContainer" node_paths=PackedStringArray("canvas")]
+layout_mode = 2
+text = "Import"
+icon = ExtResource("9_cgs1s")
+script = ExtResource("8_jxxp5")
+canvas = NodePath("../../Canvas")
+
+[node name="FileDialog" type="FileDialog" parent="Control/BoxContainer/import"]
+title = "Open a File"
+position = Vector2i(80, 115)
+size = Vector2i(709, 391)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="export" type="Button" parent="Control/BoxContainer" node_paths=PackedStringArray("canvas")]
+layout_mode = 2
+text = "Export"
+icon = ExtResource("11_vhnm7")
+script = ExtResource("9_x3wfr")
+canvas = NodePath("../../Canvas")
+
+[node name="FileDialog" type="FileDialog" parent="Control/BoxContainer/export"]
+auto_translate_mode = 1
+position = Vector2i(80, 115)
+size = Vector2i(769, 391)
+ok_button_text = "Save"
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="load_from" type="Button" parent="Control/BoxContainer"]
+visible = false
+layout_mode = 2
+text = "load"
+script = ExtResource("11_8fukh")
+
+[node name="Window" type="Window" parent="Control/BoxContainer/load_from"]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(285, 220)
+visible = false
+popup_window = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/BoxContainer/load_from/Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/BoxContainer/load_from/Window/PanelContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="SpinBox" type="SpinBox" parent="Control/BoxContainer/load_from/Window/PanelContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="ok" type="Button" parent="Control/BoxContainer/load_from/Window/PanelContainer/BoxContainer"]
+layout_mode = 2
+text = "ok"
+script = ExtResource("12_5yyjb")
+
+[node name="save_to" type="Button" parent="Control/BoxContainer"]
+visible = false
+layout_mode = 2
+text = "save to"
+script = ExtResource("7_sbtb6")
+
+[node name="Window" type="Window" parent="Control/BoxContainer/save_to"]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(285, 220)
+visible = false
+popup_window = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/BoxContainer/save_to/Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/BoxContainer/save_to/Window/PanelContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="SpinBox" type="SpinBox" parent="Control/BoxContainer/save_to/Window/PanelContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="ok" type="Button" parent="Control/BoxContainer/save_to/Window/PanelContainer/BoxContainer"]
+layout_mode = 2
+text = "ok"
+script = ExtResource("13_7o463")
+
+[node name="save" type="Button" parent="Control/BoxContainer"]
+layout_mode = 2
+text = "Done"
+icon = ExtResource("17_egecg")
+script = ExtResource("13_ar56o")
+
+[node name="Control2" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_extvj")
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/Control2"]
+layout_mode = 2
+
+[node name="brush" type="Button" parent="Control/Control2/BoxContainer" node_paths=PackedStringArray("brushes")]
+layout_mode = 2
+icon = ExtResource("19_tamv1")
+script = ExtResource("20_jdgcm")
+brushes = NodePath("../../../brushes")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Control2/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_huhib")
+
+[node name="HSlider" type="HSlider" parent="Control/Control2/BoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 15.0
+theme_override_styles/slider = SubResource("StyleBoxFlat_dn170")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_w4yv4")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1tx8t")
+min_value = 1.0
+max_value = 300.0
+value = 1.0
+exp_edit = true
+ticks_on_borders = true
+script = SubResource("GDScript_hikr8")
+
+[node name="Label" type="Label" parent="Control/Control2/BoxContainer/PanelContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="layersButton" type="Button" parent="Control/Control2/BoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+icon = ExtResource("13_115p2")
+icon_alignment = 1
+expand_icon = true
+script = SubResource("GDScript_vanmu")
+
+[node name="PopupPanel" type="PopupPanel" parent="Control/Control2/BoxContainer/layersButton"]
+size = Vector2i(370, 420)
+
+[node name="Layers" parent="Control/Control2/BoxContainer/layersButton/PopupPanel" node_paths=PackedStringArray("drawing_panel") instance=ExtResource("18_c5fs0")]
+custom_minimum_size = Vector2(360, 400)
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 368.0
+offset_bottom = 418.0
+drawing_panel = NodePath("../../../../../Canvas/SubViewport/origin/frame")
+
+[node name="selectnode" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_fq6cf")
+
+[node name="Label" type="Label" parent="Control/selectnode"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Select a Texture Node to Edit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="color_changed" from="Control/brushes/brushes/BoxContainer/ScrollContainer/BoxContainer/ColorPicker" to="Control/brushes" method="_on_color_picker_color_changed"]
+[connection signal="done" from="Control/brushes/brushes/BoxContainer/ScrollContainer2/BoxContainer/ScrollContainer" to="Control/brushes" method="_on_scroll_container_done"]
+[connection signal="file_selected" from="Control/BoxContainer/open/FileDialog" to="Control/BoxContainer/open" method="_on_file_dialog_file_selected"]
+[connection signal="create" from="Control/BoxContainer/New/Window/Control" to="." method="_on_control_create"]
+[connection signal="file_selected" from="Control/BoxContainer/import/FileDialog" to="Control/BoxContainer/import" method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="Control/BoxContainer/export/FileDialog" to="Control/BoxContainer/export" method="_on_file_dialog_file_selected"]
+[connection signal="value_changed" from="Control/Control2/BoxContainer/PanelContainer/HSlider" to="Control/Control2/BoxContainer/PanelContainer/HSlider" method="_on_value_changed"]
+
+[editable path="Control/Canvas"]

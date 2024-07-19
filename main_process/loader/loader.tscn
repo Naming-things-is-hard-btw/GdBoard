@@ -1,0 +1,193 @@
+[gd_scene load_steps=7 format=3 uid="uid://jemdviwbkhmo"]
+
+[ext_resource type="Script" path="res://main_process/loader/loader.gd" id="1_swiym"]
+[ext_resource type="Texture2D" uid="uid://dy4q673rr42j4" path="res://icon.png" id="2_jjjvv"]
+
+[sub_resource type="Animation" id="Animation_m6vjj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/ProgressBar:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Label:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0k7b3"]
+resource_name = "start"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.6993, -0.0202277, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8658)
+}
+
+[sub_resource type="Animation" id="Animation_umo54"]
+resource_name = "stop"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ProgressBar:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.4995, -0.0432544, -0.00840417, -0.2331, 0.0281112, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6327)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Label:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4995, 0.999)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hsds0"]
+_data = {
+"RESET": SubResource("Animation_m6vjj"),
+"start": SubResource("Animation_0k7b3"),
+"stop": SubResource("Animation_umo54")
+}
+
+[node name="ColorRect" type="ColorRect"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_swiym")
+
+[node name="Loader" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Loader"]
+layout_mode = 2
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_bottom = 250
+
+[node name="button" type="Button" parent="Loader/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 60
+text = "Loading GDBOARD..."
+icon = ExtResource("2_jjjvv")
+flat = true
+expand_icon = true
+
+[node name="Control" type="Control" parent="Loader"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Loader/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.8
+anchor_right = 0.9
+anchor_bottom = 0.8
+offset_left = -0.200005
+offset_top = 9.60001
+offset_right = 0.200073
+offset_bottom = 57.6
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+
+[node name="Label" type="Label" parent="Loader/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.818
+anchor_right = 1.0
+anchor_bottom = 0.818
+offset_left = 3.0
+offset_top = 0.115967
+offset_right = 3.0
+offset_bottom = 49.116
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "Starting up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Loader"]
+libraries = {
+"": SubResource("AnimationLibrary_hsds0")
+}

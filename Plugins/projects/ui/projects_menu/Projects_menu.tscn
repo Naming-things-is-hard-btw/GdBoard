@@ -1,0 +1,362 @@
+[gd_scene load_steps=27 format=3 uid="uid://cn31vm5b0cvfh"]
+
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/Projects_menu.gd" id="1_e4e62"]
+[ext_resource type="StyleBox" uid="uid://da7kp4v152h16" path="res://theme/PANEL/panel_out.tres" id="1_qa4p0"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/main_project_menu/tags.gd" id="2_odabi"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/main_project_menu/refresh.gd" id="3_54nbu"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/main_project_menu/projects.gd" id="4_f6i2j"]
+[ext_resource type="Texture2D" uid="uid://bj1454ig0032r" path="res://theme/modern_icons/refresh.svg" id="4_sitdx"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/main_project_menu/selection_manager.gd" id="5_iexo7"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/main_project_menu/import_project.gd" id="6_002et"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/delete.gd" id="7_a5p3a"]
+[ext_resource type="Texture2D" uid="uid://d4ijag8k0w5xn" path="res://theme/modern_icons/import.svg" id="8_c6k0u"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/pack.gd" id="8_k4slr"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/main_project_menu/new.gd" id="8_w5yvx"]
+[ext_resource type="Texture2D" uid="uid://4gwy3j2yh75c" path="res://theme/modern_icons/export.svg" id="10_26cno"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/create_project/exists.gd" id="10_y05ej"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/create_project/cancel.gd" id="11_l6gqf"]
+[ext_resource type="Texture2D" uid="uid://dj0o4aqlgpsme" path="res://theme/modern_icons/delete.svg" id="12_21p7v"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/create_project/new.gd" id="12_cvoc8"]
+[ext_resource type="Texture2D" uid="uid://brfyctuyv5u07" path="res://theme/modern_icons/create_new.svg" id="14_etq50"]
+[ext_resource type="Theme" uid="uid://beqr2gmnqp8dk" path="res://theme/mctheme.tres" id="16_kb0ie"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/template.gd" id="17_58h3j"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/export project.gd" id="17_f3t55"]
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/import project.gd" id="18_6v1ih"]
+[ext_resource type="Texture2D" uid="uid://ce8aa3vqkmkdy" path="res://theme/modern_icons/arrow_back.svg" id="18_gu5pn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqyf3"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.372549)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.176471)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5f1fq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76syb"]
+
+[node name="Projects_menu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = ExtResource("1_qa4p0")
+script = ExtResource("1_e4e62")
+
+[node name="main_project_menu" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="tags_refresh" type="PanelContainer" parent="main_project_menu"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqyf3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_project_menu/tags_refresh"]
+layout_mode = 2
+alignment = 1
+
+[node name="tags" type="ScrollContainer" parent="main_project_menu/tags_refresh/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_odabi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_project_menu/tags_refresh/HBoxContainer/tags"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="tags1" type="Control" parent="main_project_menu/tags_refresh/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="refresh" type="Button" parent="main_project_menu/tags_refresh/HBoxContainer"]
+layout_mode = 2
+text = "Refresh"
+icon = ExtResource("4_sitdx")
+script = ExtResource("3_54nbu")
+
+[node name="projects" type="PanelContainer" parent="main_project_menu"]
+show_behind_parent = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5f1fq")
+script = ExtResource("4_f6i2j")
+
+[node name="no_project" type="Label" parent="main_project_menu/projects"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.580392, 0.580392, 0.580392, 1)
+text = "Cant find any GdBoard Projects, please Create a Project to start working!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="main_project_menu/projects"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="main_project_menu/projects/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="selection_manager" type="BoxContainer" parent="main_project_menu/projects/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 10
+script = ExtResource("5_iexo7")
+
+[node name="down_toolbar" type="PanelContainer" parent="main_project_menu"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqyf3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_project_menu/down_toolbar"]
+layout_mode = 2
+alignment = 1
+
+[node name="import" type="Button" parent="main_project_menu/down_toolbar/HBoxContainer"]
+layout_mode = 2
+text = "Import"
+icon = ExtResource("8_c6k0u")
+script = ExtResource("6_002et")
+
+[node name="export" type="Button" parent="main_project_menu/down_toolbar/HBoxContainer"]
+layout_mode = 2
+text = "Export"
+icon = ExtResource("10_26cno")
+script = ExtResource("8_k4slr")
+
+[node name="Control" type="Control" parent="main_project_menu/down_toolbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="delete" type="Button" parent="main_project_menu/down_toolbar/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+icon = ExtResource("12_21p7v")
+script = ExtResource("7_a5p3a")
+
+[node name="new" type="Button" parent="main_project_menu/down_toolbar/HBoxContainer"]
+layout_mode = 2
+text = "New Project"
+icon = ExtResource("14_etq50")
+script = ExtResource("8_w5yvx")
+
+[node name="new_project" type="VBoxContainer" parent="."]
+visible = false
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="up_toolbar" type="PanelContainer" parent="new_project"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqyf3")
+
+[node name="MarginContainer" type="MarginContainer" parent="new_project/up_toolbar"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="new_project/up_toolbar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 223
+alignment = 1
+
+[node name="Label" type="Label" parent="new_project/up_toolbar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "New Project Screen"
+
+[node name="project_info" type="PanelContainer" parent="new_project"]
+show_behind_parent = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_76syb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="new_project/project_info"]
+layout_mode = 2
+
+[node name="Control0" type="Control" parent="new_project/project_info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="new_project/project_info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/separation = 15
+
+[node name="name" type="HBoxContainer" parent="new_project/project_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="new_project/project_info/HBoxContainer/VBoxContainer/name"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Label" type="Label" parent="new_project/project_info/HBoxContainer/VBoxContainer/name/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 30
+text = "Project Name"
+
+[node name="exists" type="Label" parent="new_project/project_info/HBoxContainer/VBoxContainer/name/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Project Already Exists!!!"
+script = ExtResource("10_y05ej")
+
+[node name="LineEdit" type="LineEdit" parent="new_project/project_info/HBoxContainer/VBoxContainer/name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "My Project"
+
+[node name="tags" type="HBoxContainer" parent="new_project/project_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="new_project/project_info/HBoxContainer/VBoxContainer/tags"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 30
+text = "Tags"
+
+[node name="LineEdit" type="LineEdit" parent="new_project/project_info/HBoxContainer/VBoxContainer/tags"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 1, 0.0862745, 1)
+text = "New_Grid"
+
+[node name="templates" type="HBoxContainer" parent="new_project/project_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="new_project/project_info/HBoxContainer/VBoxContainer/templates"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 30
+text = "Template"
+
+[node name="template" type="OptionButton" parent="new_project/project_info/HBoxContainer/VBoxContainer/templates"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("17_58h3j")
+
+[node name="description" type="HBoxContainer" parent="new_project/project_info/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="vBoxContainer" type="VBoxContainer" parent="new_project/project_info/HBoxContainer/VBoxContainer/description"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Label" type="Label" parent="new_project/project_info/HBoxContainer/VBoxContainer/description/vBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Description"
+
+[node name="LineEdit" type="TextEdit" parent="new_project/project_info/HBoxContainer/VBoxContainer/description"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.658824, 0.658824, 0.658824, 1)
+text = "Project"
+
+[node name="Control1" type="Control" parent="new_project/project_info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="down_toolbar" type="PanelContainer" parent="new_project"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqyf3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="new_project/down_toolbar"]
+layout_direction = 2
+layout_mode = 2
+alignment = 1
+
+[node name="cancel" type="Button" parent="new_project/down_toolbar/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+icon = ExtResource("18_gu5pn")
+script = ExtResource("11_l6gqf")
+
+[node name="Control" type="Control" parent="new_project/down_toolbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="new" type="Button" parent="new_project/down_toolbar/HBoxContainer"]
+layout_mode = 2
+text = "Create Project"
+icon = ExtResource("14_etq50")
+script = ExtResource("12_cvoc8")
+
+[node name="delete project" type="ConfirmationDialog" parent="."]
+size = Vector2i(231, 136)
+dialog_text = "you cant undo this"
+
+[node name="export project" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(738, 489)
+theme = ExtResource("16_kb0ie")
+access = 2
+root_subfolder = "/sdcard"
+use_native_dialog = true
+script = ExtResource("17_f3t55")
+
+[node name="import project" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(729, 464)
+theme = ExtResource("16_kb0ie")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.GDBOARD; GDBOARD Project Export", "*.res; Old Gdboard project [res]", "*.tres; Old Gdboard project [tres]")
+use_native_dialog = true
+script = ExtResource("18_6v1ih")
+
+[node name="project_already_exists" type="AcceptDialog" parent="."]
+size = Vector2i(225, 136)
+dialog_text = "project already exists"
+
+[connection signal="double_click" from="main_project_menu/projects/ScrollContainer/MarginContainer/selection_manager" to="main_project_menu/projects/ScrollContainer/MarginContainer/selection_manager" method="_on_selection_manager_double_click"]
+[connection signal="visibility_changed" from="new_project" to="new_project/project_info/HBoxContainer/VBoxContainer/templates/template" method="_on_new_project_visibility_changed"]
+[connection signal="item_selected" from="new_project/project_info/HBoxContainer/VBoxContainer/templates/template" to="new_project/project_info/HBoxContainer/VBoxContainer/templates/template" method="_on_item_selected"]
+[connection signal="file_selected" from="export project" to="export project" method="_on_export"]
+[connection signal="file_selected" from="import project" to="import project" method="_on_import"]

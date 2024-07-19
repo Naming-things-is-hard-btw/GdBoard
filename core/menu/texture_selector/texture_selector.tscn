@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci3hxrh75ivud"]
+
+[ext_resource type="PackedScene" uid="uid://blscpxgs25d08" path="res://core/menu/base.tscn" id="1_ela8y"]
+[ext_resource type="Script" path="res://core/menu/texture_selector/texture_selector.gd" id="2_gjpp4"]
+[ext_resource type="Script" path="res://core/menu/texture_selector/select.gd" id="3_6kwe1"]
+
+[node name="Base" instance=ExtResource("1_ela8y")]
+script = ExtResource("2_gjpp4")
+
+[node name="c" parent="c/title/Control" index="0"]
+offset_bottom = 46.0
+
+[node name="BoxContainer" type="BoxContainer" parent="c/main" index="0"]
+layout_mode = 2
+vertical = true
+
+[node name="select" type="MenuButton" parent="c/main/BoxContainer" index="0"]
+layout_mode = 2
+text = "حدد صورة"
+flat = false
+script = ExtResource("3_6kwe1")
+
+[node name="TextureRect" type="TextureRect" parent="c/main/BoxContainer" index="1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

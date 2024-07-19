@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemGroupLoader" load_steps=8 format=3 uid="uid://cffo4a1rw5386"]
+
+[ext_resource type="Script" path="res://core/resources/item_group.gd" id="1_ne5j2"]
+[ext_resource type="Resource" uid="uid://cdsutker0o8sk" path="res://Plugins/_add_ui_scenes/resources/Item.tres" id="2_r83n3"]
+[ext_resource type="Resource" uid="uid://w5jrccnb6egs" path="res://Plugins/_add_ui_scenes/resources/Panel.tres" id="3_0ap72"]
+[ext_resource type="Resource" uid="uid://dbtl77t71gmtt" path="res://Plugins/_add_ui_scenes/resources/Text.tres" id="4_frv0u"]
+[ext_resource type="Script" path="res://core/resources/item_group_loader.gd" id="5_34udf"]
+[ext_resource type="Resource" uid="uid://b2odlqxgx5d5t" path="res://Plugins/_add_ui_scenes/resources/Texture.tres" id="5_phlen"]
+[ext_resource type="Resource" uid="uid://ckgsnjqikncu0" path="res://Plugins/_add_ui_scenes/resources/test.tres" id="5_sgu67"]
+
+[resource]
+script = ExtResource("5_34udf")
+array = Array[ExtResource("1_ne5j2")]([ExtResource("2_r83n3"), ExtResource("3_0ap72"), ExtResource("4_frv0u"), ExtResource("5_phlen"), ExtResource("5_sgu67")])
+built_in_favorates = {}

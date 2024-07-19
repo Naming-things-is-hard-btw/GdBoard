@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cydroa1pakhkk"]
+
+[ext_resource type="Script" path="res://core/plugin_loader/PluginSwitcher/pluginswitcher.gd" id="1"]
+[ext_resource type="Script" path="res://core/utility/BlokiPlugin.gd" id="2_lunbo"]
+
+[node name="Plugins" type="Node"]
+process_priority = -4
+script = ExtResource("1")
+
+[node name="BlokiPlugin" type="Node" parent="."]
+script = ExtResource("2_lunbo")

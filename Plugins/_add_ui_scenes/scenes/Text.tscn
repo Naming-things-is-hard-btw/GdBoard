@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b56akor0fnbhi"]
+
+[ext_resource type="Script" path="res://core/nodes/BlokiText.gd" id="1_d3htf"]
+
+[node name="Text" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 533.0
+offset_bottom = 169.0
+script = ExtResource("1_d3htf")
+text = "New Text"
+text_size = 110

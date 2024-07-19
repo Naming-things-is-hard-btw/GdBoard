@@ -1,0 +1,340 @@
+[gd_scene load_steps=34 format=3 uid="uid://c1ckdetkurst2"]
+
+[ext_resource type="StyleBox" uid="uid://cxlbjn6jxnb0j" path="res://theme/button_normal.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://7saxgi7b3iyf" path="res://theme/PANEL/MainWindow_BG.tres" id="1_4qj4q"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/main_layout.gd" id="1_nxywa"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/BottomPanel.gd" id="2"]
+[ext_resource type="Script" path="res://core/utility/panels/tool_menu.gd" id="2_8cjen"]
+[ext_resource type="PackedScene" uid="uid://b45nw205rcb8k" path="res://core/plugin_loader/ViewportWindow/ViewportWindow.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://c86st4kv8hw6p" path="res://theme/modern_icons/home.svg" id="3_as4lr"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/LeftPanel.gd" id="4"]
+[ext_resource type="StyleBox" uid="uid://b15e1ofiyglqy" path="res://theme/PANEL/Tabs_Panel_BG.tres" id="5_lwhn2"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/save.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://ce8aa3vqkmkdy" path="res://theme/modern_icons/arrow_back.svg" id="7_73oo0"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/undo.gd" id="7_e6ekk"]
+[ext_resource type="Texture2D" uid="uid://biy0k6kfhlshq" path="res://theme/modern_icons/aroow_forward.svg" id="9_4fe38"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/redo.gd" id="9_ums2o"]
+[ext_resource type="Script" path="res://core/utility/panels/tabs_panel.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://beisae4njaid" path="res://theme/modern_icons/save.svg" id="11_7a00v"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/RightPanel.gd" id="14"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/main_split.gd" id="14_h63av"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/left.gd" id="14_l613j"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/bottom_left_panel.gd" id="15_a7k5o"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/second_split.gd" id="18_c337w"]
+[ext_resource type="Texture2D" uid="uid://b0jmxw0icno3s" path="res://theme/icons/new_login_FILL0_wght400_GRAD0_opsz24.png" id="20"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/right.gd" id="20_hwp8r"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/bottom_right_panel.gd" id="20_ukmb8"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/quit.gd" id="22"]
+[ext_resource type="Script" path="res://core/plugin_loader/MainLayout/console.gd" id="26_pias1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6budn"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.129412, 0.258824, 0.917647, 1)
+border_color = Color(0.394353, 0.394353, 0.394353, 0.227451)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.176471)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b08no"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ba4en"]
+bg_color = Color(0.128735, 0.257456, 0.916371, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 5
+shadow_color = Color(0.505882, 1, 0.666667, 1)
+
+[sub_resource type="StyleBoxEmpty" id="4"]
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vua52"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MainLayout" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_nxywa")
+
+[node name="background" type="PanelContainer" parent="."]
+layout_direction = 2
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_4qj4q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="tool_tip" type="FlowContainer" parent="background/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="Bloki" type="MenuButton" parent="background/VBoxContainer/tool_tip"]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6budn")
+disabled = true
+text = "GDBoard"
+icon = ExtResource("3_as4lr")
+flat = false
+
+[node name="ToolMenu" type="HBoxContainer" parent="background/VBoxContainer/tool_tip"]
+layout_mode = 2
+script = ExtResource("2_8cjen")
+
+[node name="Tabs" type="PanelContainer" parent="background/VBoxContainer/tool_tip"]
+clip_children = 2
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = ExtResource("5_lwhn2")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="background/VBoxContainer/tool_tip/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="background/VBoxContainer/tool_tip/Tabs/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b08no")
+
+[node name="Control" type="Control" parent="background/VBoxContainer/tool_tip/Tabs/ScrollContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="selection" type="Panel" parent="background/VBoxContainer/tool_tip/Tabs/ScrollContainer/PanelContainer/Control"]
+layout_mode = 2
+offset_bottom = 44.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ba4en")
+
+[node name="tabs_panel" type="HBoxContainer" parent="background/VBoxContainer/tool_tip/Tabs/ScrollContainer/PanelContainer" node_paths=PackedStringArray("selectionpanel", "scroll")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("10")
+selectionpanel = NodePath("../Control/selection")
+scroll = NodePath("../..")
+
+[node name="shortcuts" type="HBoxContainer" parent="background/VBoxContainer/tool_tip"]
+layout_mode = 2
+
+[node name="undo" type="Button" parent="background/VBoxContainer/tool_tip/shortcuts"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("7_73oo0")
+script = ExtResource("7_e6ekk")
+
+[node name="redo" type="Button" parent="background/VBoxContainer/tool_tip/shortcuts"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("9_4fe38")
+script = ExtResource("9_ums2o")
+
+[node name="save" type="Button" parent="background/VBoxContainer/tool_tip/shortcuts"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("11_7a00v")
+script = ExtResource("6")
+
+[node name="quit" type="Button" parent="background/VBoxContainer/tool_tip/shortcuts" node_paths=PackedStringArray("quit_popup")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/pressed = ExtResource("1")
+icon = ExtResource("20")
+icon_alignment = 1
+script = ExtResource("22")
+quit_popup = NodePath("../../../../../quit popup")
+
+[node name="main_split" type="SplitContainer" parent="background/VBoxContainer"]
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("14_h63av")
+
+[node name="Second_split" type="SplitContainer" parent="background/VBoxContainer/main_split"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+script = ExtResource("18_c337w")
+
+[node name="Right" type="SplitContainer" parent="background/VBoxContainer/main_split/Second_split"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+script = ExtResource("20_hwp8r")
+full_vertical = true
+
+[node name="RightPanel" type="TabContainer" parent="background/VBoxContainer/main_split/Second_split/Right"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("4")
+script = ExtResource("14")
+
+[node name="BottomRightPanel" type="TabContainer" parent="background/VBoxContainer/main_split/Second_split/Right"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("3")
+script = ExtResource("20_ukmb8")
+
+[node name="Middle" type="SplitContainer" parent="background/VBoxContainer/main_split/Second_split"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+vertical = true
+
+[node name="ViewportWindow" parent="background/VBoxContainer/main_split/Second_split/Middle" instance=ExtResource("3")]
+layout_mode = 2
+size_flags_stretch_ratio = 3.0
+
+[node name="BottomPanel" type="TabContainer" parent="background/VBoxContainer/main_split/Second_split/Middle"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("2")
+script = ExtResource("2")
+
+[node name="Left" type="SplitContainer" parent="background/VBoxContainer/main_split"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+script = ExtResource("14_l613j")
+full_vertical = true
+
+[node name="LeftPanel" type="TabContainer" parent="background/VBoxContainer/main_split/Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("3")
+script = ExtResource("4")
+
+[node name="BottomLeftPanel" type="TabContainer" parent="background/VBoxContainer/main_split/Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("3")
+script = ExtResource("15_a7k5o")
+
+[node name="savedpopup" type="AcceptDialog" parent="."]
+title = ""
+initial_position = 1
+size = Vector2i(243, 136)
+ok_button_text = "ok"
+dialog_text = "Project saved."
+
+[node name="quit popup" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Quit"
+initial_position = 2
+size = Vector2i(392, 136)
+ok_button_text = "save and close"
+dialog_text = "do you want to save before you close project?"
+
+[node name="save_ask_popup" type="ConfirmationDialog" parent="."]
+title = "save project"
+size = Vector2i(422, 136)
+ok_button_text = "yes"
+dialog_text = "pressing yes will save project on the disk"
+cancel_button_text = "no"
+
+[node name="console" type="PanelContainer" parent="."]
+visible = false
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vua52")
+script = ExtResource("26_pias1")
+
+[node name="BoxContainer" type="BoxContainer" parent="console"]
+layout_mode = 2
+vertical = true
+
+[node name="PanelContainer" type="PanelContainer" parent="console/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="console/BoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="console/BoxContainer/PanelContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "    Console [debug]"
+
+[node name="close" type="Button" parent="console/BoxContainer/PanelContainer/BoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="Label" type="RichTextLabel" parent="console/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "..."
+
+[node name="LineEdit" type="LineEdit" parent="console/BoxContainer"]
+layout_mode = 2
+placeholder_text = "type command"
+
+[connection signal="canceled" from="quit popup" to="background/VBoxContainer/tool_tip/shortcuts/quit" method="_on_quit_popup_canceled"]
+[connection signal="confirmed" from="quit popup" to="background/VBoxContainer/tool_tip/shortcuts/quit" method="_on_quit_popup_confirmed"]
+[connection signal="custom_action" from="quit popup" to="background/VBoxContainer/tool_tip/shortcuts/quit" method="_on_quit_popup_custom_action"]
+[connection signal="confirmed" from="save_ask_popup" to="background/VBoxContainer/tool_tip/shortcuts/save" method="_on_save_ask_popup_confirmed"]
+[connection signal="pressed" from="console/BoxContainer/PanelContainer/BoxContainer/close" to="console" method="_on_close_pressed"]

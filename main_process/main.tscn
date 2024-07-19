@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cltqpe6hvy1nq"]
+
+[ext_resource type="PackedScene" uid="uid://c1ckdetkurst2" path="res://core/plugin_loader/MainLayout/MainLayout.tscn" id="1"]
+[ext_resource type="Script" path="res://main_process/main.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://cum2erglf1sbo" path="res://main_process/loading_popup/loading.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cydroa1pakhkk" path="res://core/plugin_loader/PluginSwitcher/pluginswitcher.tscn" id="9_bw5e4"]
+
+[node name="main" type="Node3D"]
+script = ExtResource("2")
+
+[node name="Tools" parent="." instance=ExtResource("9_bw5e4")]
+process_priority = -5
+
+[node name="MainLayout" parent="." instance=ExtResource("1")]
+mouse_force_pass_scroll_events = false
+
+[node name="loading" parent="." instance=ExtResource("4")]
+visible = false

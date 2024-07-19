@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://c262mpak708ts"]
+
+[ext_resource type="Script" path="res://Plugins/projects/ui/projects_menu/project/project.gd" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eq2sg"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.380392)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08dyw"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.655)
+border_color = Color(0.454742, 0.454742, 0.454742, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="panelcontainer" type="PanelContainer" node_paths=PackedStringArray("texrect", "namelabel", "desc_label", "tags_container", "prop_panel")]
+self_modulate = Color(0, 0.0627451, 0.105882, 1)
+custom_minimum_size = Vector2(600, 200)
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_eq2sg")
+script = ExtResource("2")
+texrect = NodePath("TextureRect")
+namelabel = NodePath("VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/name")
+desc_label = NodePath("VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/desc")
+tags_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/PanelContainer/tags_container")
+prop_panel = NodePath("VBoxContainer/PanelContainer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+vertical = true
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_08dyw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="name" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "my new project"
+
+[node name="desc" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.780392, 0.780392, 0.780392, 1)
+text = "prop"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="tags_container" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="selected" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("2")

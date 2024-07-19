@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://7uptotbfbc5t"]
+
+[ext_resource type="PackedScene" uid="uid://blscpxgs25d08" path="res://core/menu/base.tscn" id="1_m2hgn"]
+[ext_resource type="Script" path="res://core/menu/types/vector4/vector4.gd" id="2_3nfl2"]
+[ext_resource type="PackedScene" uid="uid://umq75yaf6wwy" path="res://core/menu/types/spinbox/BetterSpinbox.tscn" id="3_7bd7k"]
+
+[node name="vector2d" instance=ExtResource("1_m2hgn")]
+script = ExtResource("2_3nfl2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="c/main" index="0"]
+layout_mode = 2
+
+[node name="1" type="HBoxContainer" parent="c/main/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="x" parent="c/main/VBoxContainer/1" index="0" instance=ExtResource("3_7bd7k")]
+layout_mode = 2
+
+[node name="y" parent="c/main/VBoxContainer/1" index="1" instance=ExtResource("3_7bd7k")]
+layout_mode = 2
+
+[node name="2" type="HBoxContainer" parent="c/main/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="z" parent="c/main/VBoxContainer/2" index="0" instance=ExtResource("3_7bd7k")]
+layout_mode = 2
+
+[node name="w" parent="c/main/VBoxContainer/2" index="1" instance=ExtResource("3_7bd7k")]
+layout_mode = 2
+
+[connection signal="pressed" from="c/title/Control/c/reset" to="." method="_on_reset_pressed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/1/x" to="." method="_on_x_on_value_changed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/1/y" to="." method="_on_y_on_value_changed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/2/z" to="." method="_on_z_on_value_changed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/2/w" to="." method="_on_w_on_value_changed"]

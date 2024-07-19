@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh1dkvnfifbd7"]
+
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/tag/tag.gd" id="1_n6ku8"]
+[ext_resource type="Texture2D" uid="uid://br6exvnuq23td" path="res://theme/icons/up.png" id="2_pycn2"]
+[ext_resource type="Texture2D" uid="uid://dyo14cxs2281d" path="res://theme/icons/down.png" id="3_fwmoe"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/tag/hide.gd" id="4_vrjgn"]
+
+[node name="tag" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+script = ExtResource("1_n6ku8")
+
+[node name="Tag" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="hide" type="TextureButton" parent="Tag"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("2_pycn2")
+texture_pressed = ExtResource("3_fwmoe")
+stretch_mode = 3
+script = ExtResource("4_vrjgn")
+
+[node name="Label" type="Label" parent="Tag"]
+layout_mode = 2
+text = "tag name"
+
+[node name="VBoxContainer" type="FlowContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3

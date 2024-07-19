@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpsxgopl8qkvg"]
+
+[ext_resource type="Script" path="res://core/nodes/dependencies/BlokiTexture/texture_select.gd" id="1_hxwos"]
+[ext_resource type="Texture2D" uid="uid://31h8mec8m55y" path="res://theme/modern_icons/folder_open.svg" id="2_r1ao3"]
+[ext_resource type="Texture2D" uid="uid://ltimdd1ol7y2" path="res://theme/modern_icons/edit.svg" id="3_ibwpx"]
+[ext_resource type="Texture2D" uid="uid://4gwy3j2yh75c" path="res://theme/modern_icons/export.svg" id="4_i2hf1"]
+
+[node name="TextureSelect" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+vertical = true
+script = ExtResource("1_hxwos")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Image"
+
+[node name="select" type="Button" parent="."]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "Select"
+icon = ExtResource("2_r1ao3")
+
+[node name="edit" type="Button" parent="."]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "Edit"
+icon = ExtResource("3_ibwpx")
+
+[node name="export" type="Button" parent="."]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "Export"
+icon = ExtResource("4_i2hf1")
+
+[node name="import_filedialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+size = Vector2i(729, 508)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="export_filedialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+size = Vector2i(769, 538)
+ok_button_text = "Save"
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Stretch"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 7
+popup/item_0/text = "Scale"
+popup/item_1/text = "Tile"
+popup/item_1/id = 1
+popup/item_2/text = "Keep"
+popup/item_2/id = 2
+popup/item_3/text = "Keep Centered"
+popup/item_3/id = 3
+popup/item_4/text = "Keep Aspect"
+popup/item_4/id = 4
+popup/item_5/text = "Keep Aspect Centered"
+popup/item_5/id = 5
+popup/item_6/text = "Keep Aspect Covered"
+popup/item_6/id = 6
+
+[connection signal="pressed" from="select" to="." method="_on_select_pressed"]
+[connection signal="pressed" from="edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="export" to="." method="_on_export_pressed"]
+[connection signal="file_selected" from="import_filedialog" to="." method="_on_import_filedialog_file_selected"]
+[connection signal="file_selected" from="export_filedialog" to="." method="_on_export_filedialog_file_selected"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemGroup" load_steps=4 format=3 uid="uid://w5jrccnb6egs"]
+
+[ext_resource type="Texture2D" uid="uid://dv8bed4v8c21t" path="res://theme/icons/drag_select.png" id="1_7gyo5"]
+[ext_resource type="PackedScene" uid="uid://1qydf4gisexl" path="res://Plugins/_add_ui_scenes/scenes/Panel.tscn" id="1_c3qhk"]
+[ext_resource type="Script" path="res://core/resources/item_group.gd" id="2_m1g6f"]
+
+[resource]
+script = ExtResource("2_m1g6f")
+tag = "Core"
+item_name = "Panel"
+item_icon = ExtResource("1_7gyo5")
+scene = ExtResource("1_c3qhk")
+is_in_favorates = false

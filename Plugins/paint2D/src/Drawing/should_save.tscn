@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bjt78ds1enx4a"]
+
+[node name="ShouldSave" type="ConfirmationDialog"]
+size = Vector2i(524, 142)
+ok_button_text = "Save"
+dialog_text = "Leaving without pressing done will leave the image unchanged
+press save to save image"
+cancel_button_text = "Nah"

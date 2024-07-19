@@ -1,0 +1,220 @@
+[gd_scene load_steps=7 format=3 uid="uid://b45nw205rcb8k"]
+
+[ext_resource type="Script" path="res://core/plugin_loader/ViewportWindow/MainViewportWindow.gd" id="1_wmpe1"]
+[ext_resource type="Script" path="res://core/utility/panels/tool_panel/tool_panel.gd" id="3"]
+[ext_resource type="Script" path="res://core/plugin_loader/ViewportWindow/viewport.gd" id="3_ooh11"]
+[ext_resource type="PackedScene" uid="uid://bp74y1rq84gp2" path="res://Plugins/edit/ui/add/Add_Node.tscn" id="5_adlmm"]
+[ext_resource type="PackedScene" uid="uid://bcs3ohvc2f43y" path="res://core/components/ui_components/tool_options/Options.tscn" id="5_bb3sh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5tipo"]
+
+[node name="ViewportWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+script = ExtResource("1_wmpe1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Viewport" type="TabContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5tipo")
+tabs_visible = false
+script = ExtResource("3_ooh11")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer2"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UP_TOOL_SCROOL" type="ScrollContainer" parent="Control/MarginContainer2/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="up" type="MarginContainer" parent="Control/MarginContainer2/VBoxContainer/UP_TOOL_SCROOL"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("3")
+
+[node name="box" type="HBoxContainer" parent="Control/MarginContainer2/VBoxContainer/UP_TOOL_SCROOL/up"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Middle" type="HBoxContainer" parent="Control/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="LEFT_TOOL_SCROOL" type="ScrollContainer" parent="Control/MarginContainer2/VBoxContainer/Middle"]
+layout_direction = 2
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="left" type="MarginContainer" parent="Control/MarginContainer2/VBoxContainer/Middle/LEFT_TOOL_SCROOL"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("3")
+Rotation = 0
+
+[node name="box" type="VBoxContainer" parent="Control/MarginContainer2/VBoxContainer/Middle/LEFT_TOOL_SCROOL/left"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="centre" type="BoxContainer" parent="Control/MarginContainer2/VBoxContainer/Middle"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Control/MarginContainer2/VBoxContainer/Middle/centre"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+mouse_filter = 2
+
+[node name="container" type="MarginContainer" parent="Control/MarginContainer2/VBoxContainer/Middle/centre"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="options" parent="Control/MarginContainer2/VBoxContainer/Middle/centre/container" instance=ExtResource("5_bb3sh")]
+visible = false
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+
+[node name="RIGHT_TOOL_SCROOL" type="ScrollContainer" parent="Control/MarginContainer2/VBoxContainer/Middle"]
+layout_direction = 2
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="right" type="MarginContainer" parent="Control/MarginContainer2/VBoxContainer/Middle/RIGHT_TOOL_SCROOL"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("3")
+Rotation = 0
+
+[node name="box" type="VBoxContainer" parent="Control/MarginContainer2/VBoxContainer/Middle/RIGHT_TOOL_SCROOL/right"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="DOWN_TOOL_SCROOL" type="ScrollContainer" parent="Control/MarginContainer2/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="down" type="MarginContainer" parent="Control/MarginContainer2/VBoxContainer/DOWN_TOOL_SCROOL"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("3")
+
+[node name="box" type="HBoxContainer" parent="Control/MarginContainer2/VBoxContainer/DOWN_TOOL_SCROOL/down"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="AddNode" parent="Control/MarginContainer" instance=ExtResource("5_adlmm")]
+visible = false
+layout_mode = 2

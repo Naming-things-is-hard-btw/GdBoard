@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://btvhah5labswk"]
+
+[ext_resource type="StyleBox" uid="uid://x88c8bomnavg" path="res://theme/light.tres" id="1"]
+[ext_resource type="Script" path="res://core/menu/button/button.gd" id="2"]
+[ext_resource type="Script" path="res://core/menu/AnimationPlayer.gd" id="3_vuc4n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cora"]
+content_margin_left = 2.0
+content_margin_top = 3.0
+content_margin_right = 2.0
+content_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uusoc"]
+
+[sub_resource type="Animation" id="Animation_eme5t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("c:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1v7fp"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("c:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, -0.25, 0, 0, 70.2637, 0, -0.3, 0.263701, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bo114"]
+_data = {
+"RESET": SubResource("Animation_eme5t"),
+"open": SubResource("Animation_1v7fp")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kn3f2"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.109804, 0.156863, 0.2, 1)
+shadow_color = Color(0, 0, 0, 0.117647)
+shadow_size = 20
+
+[node name="button" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3cora")
+script = ExtResource("2")
+
+[node name="vector" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Panel" type="PanelContainer" parent="vector"]
+self_modulate = Color(0, 0.32549, 1, 1)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1")
+
+[node name="Control" type="PanelContainer" parent="vector/Panel"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uusoc")
+
+[node name="c" type="HBoxContainer" parent="vector/Panel/Control"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="icon" type="Button" parent="vector/Panel/Control/c"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+flat = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="vector/Panel/Control/c"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="name" type="Label" parent="vector/Panel/Control/c/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "name"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="vector/Panel/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_bo114")
+}
+script = ExtResource("3_vuc4n")
+
+[node name="PanelContainer" type="PanelContainer" parent="vector"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_kn3f2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="vector/PanelContainer"]
+layout_mode = 2
+
+[node name="c" type="HBoxContainer" parent="vector/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="vector/PanelContainer/VBoxContainer/c"]
+layout_mode = 2
+text = "    ...       "
+
+[node name="Button" type="Button" parent="vector/PanelContainer/VBoxContainer/c"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "button"
+
+[node name="Timer" type="Timer" parent="vector"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="vector/Timer" to="." method="_on_Timer_timeout"]

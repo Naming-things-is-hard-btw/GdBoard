@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ow27shc43q1w"]
+
+[ext_resource type="Script" path="res://core/utility/panels/tool_panel/selectable_button.gd" id="1_egest"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpq4u"]
+bg_color = Color(0, 0, 0, 0.372549)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0.176471)
+
+[node name="selectable_button" type="PanelContainer"]
+offset_right = 293.0
+offset_bottom = 122.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_cpq4u")
+script = ExtResource("1_egest")
+
+[node name="HBoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+alignment = 1

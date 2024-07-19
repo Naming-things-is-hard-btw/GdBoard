@@ -1,0 +1,153 @@
+[gd_scene load_steps=10 format=3 uid="uid://dybbr1jls4snk"]
+
+[ext_resource type="StyleBox" uid="uid://da7kp4v152h16" path="res://theme/PANEL/panel_out.tres" id="1_ihp6f"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/fav/fav.gd" id="2_ibr7e"]
+[ext_resource type="PackedScene" uid="uid://btihfafkn73b1" path="res://Plugins/edit/ui/fav/preview.tscn" id="4_u3dww"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/add/spawner.gd" id="5_3vg47"]
+[ext_resource type="StyleBox" uid="uid://2rufke5tf48b" path="res://theme/PANEL/panel_title.tres" id="5_dbbx8"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/fav/h_box_container.gd" id="5_rof31"]
+[ext_resource type="Texture2D" uid="uid://di70u26awprlj" path="res://theme/modern_icons/fav.svg" id="6_14aso"]
+[ext_resource type="Script" path="res://Plugins/edit/ui/fav/camera_2d.gd" id="7_0hgs8"]
+[ext_resource type="Texture2D" uid="uid://cs7jxdl5sd4km" path="res://theme/icons/new_eco_FILL0_wght400_GRAD0_opsz24.png" id="7_3m15u"]
+
+[node name="fav" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1028.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_ihp6f")
+script = ExtResource("2_ibr7e")
+
+[node name="spawner" type="Control" parent="." node_paths=PackedStringArray("root", "cam", "vp")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+script = ExtResource("5_3vg47")
+root = NodePath("SubViewport/root")
+cam = NodePath("SubViewport/Camera2D")
+vp = NodePath("SubViewport")
+
+[node name="SubViewport" type="SubViewport" parent="spawner"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(500, 500)
+render_target_update_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="spawner/SubViewport"]
+script = ExtResource("7_0hgs8")
+
+[node name="root" type="Node2D" parent="spawner/SubViewport"]
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+vertical = true
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="BoxContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer/ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Inspector" type="PanelContainer" parent="BoxContainer/ScrollContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("5_dbbx8")
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxContainer/ScrollContainer2/HBoxContainer/Inspector"]
+custom_minimum_size = Vector2(0, 37)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="c" type="HBoxContainer" parent="BoxContainer/ScrollContainer2/HBoxContainer/Inspector/MarginContainer"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="BoxContainer/ScrollContainer2/HBoxContainer/Inspector/MarginContainer/c"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("6_14aso")
+stretch_mode = 3
+
+[node name="name" type="Label" parent="BoxContainer/ScrollContainer2/HBoxContainer/Inspector/MarginContainer/c"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+text = "Favorites"
+vertical_alignment = 1
+
+[node name="Connections" type="PanelContainer" parent="BoxContainer/ScrollContainer2/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("5_dbbx8")
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxContainer/ScrollContainer2/HBoxContainer/Connections"]
+custom_minimum_size = Vector2(0, 37)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="c" type="HBoxContainer" parent="BoxContainer/ScrollContainer2/HBoxContainer/Connections/MarginContainer"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="BoxContainer/ScrollContainer2/HBoxContainer/Connections/MarginContainer/c"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("7_3m15u")
+stretch_mode = 3
+
+[node name="name" type="Label" parent="BoxContainer/ScrollContainer2/HBoxContainer/Connections/MarginContainer/c"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+text = "Connections"
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" type="BoxContainer" parent="BoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+script = ExtResource("5_rof31")
+full_vertical = true
+
+[node name="0" parent="BoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_u3dww")]
+layout_mode = 2
+
+[node name="1" parent="BoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_u3dww")]
+layout_mode = 2
+
+[node name="2" parent="BoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_u3dww")]
+layout_mode = 2
+
+[node name="3" parent="BoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_u3dww")]
+layout_mode = 2
+
+[node name="4" parent="BoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_u3dww")]
+layout_mode = 2
+
+[node name="5" parent="BoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_u3dww")]
+layout_mode = 2

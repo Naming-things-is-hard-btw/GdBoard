@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemGroup" load_steps=4 format=3 uid="uid://ckgsnjqikncu0"]
+
+[ext_resource type="PackedScene" uid="uid://iwc0xq44c8jk" path="res://Plugins/_add_ui_scenes/scenes/test.tscn" id="1_5bokr"]
+[ext_resource type="Script" path="res://core/resources/item_group.gd" id="3_5afbc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c5fat"]
+load_path = "res://.godot/imported/drag_select.png-57a0e6ae0b37aaae524b7487f9659a61.ctex"
+
+[resource]
+script = ExtResource("3_5afbc")
+tag = "Basic"
+item_name = "Window"
+item_icon = SubResource("CompressedTexture2D_c5fat")
+scene = ExtResource("1_5bokr")
+is_in_favorates = false

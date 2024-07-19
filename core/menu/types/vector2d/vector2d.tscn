@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvba5nc4cwgo3"]
+
+[ext_resource type="PackedScene" uid="uid://blscpxgs25d08" path="res://core/menu/base.tscn" id="1_ywinn"]
+[ext_resource type="Script" path="res://core/menu/types/vector2d/vector2d.gd" id="2_f4snj"]
+[ext_resource type="PackedScene" uid="uid://umq75yaf6wwy" path="res://core/menu/types/spinbox/BetterSpinbox.tscn" id="3_ucxy3"]
+
+[node name="vector2d" instance=ExtResource("1_ywinn")]
+script = ExtResource("2_f4snj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="c/main" index="0"]
+layout_mode = 2
+
+[node name="x" type="HBoxContainer" parent="c/main/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="c/main/VBoxContainer/x" index="0"]
+visible = false
+layout_mode = 2
+text = "    x        "
+
+[node name="x" parent="c/main/VBoxContainer/x" index="1" instance=ExtResource("3_ucxy3")]
+layout_mode = 2
+
+[node name="y" type="HBoxContainer" parent="c/main/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="c/main/VBoxContainer/y" index="0"]
+visible = false
+layout_mode = 2
+text = "    y        "
+
+[node name="y" parent="c/main/VBoxContainer/y" index="1" instance=ExtResource("3_ucxy3")]
+layout_mode = 2
+
+[connection signal="pressed" from="c/title/Control/c/reset" to="." method="_on_reset_pressed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/x/x" to="." method="_on_x_on_value_changed"]
+[connection signal="on_value_changed" from="c/main/VBoxContainer/y/y" to="." method="_on_y_on_value_changed"]

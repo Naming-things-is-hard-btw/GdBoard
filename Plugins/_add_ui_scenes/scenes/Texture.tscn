@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxxbhbklhauv"]
+
+[ext_resource type="Script" path="res://core/nodes/BlokiTexture.gd" id="1_7bpcq"]
+[ext_resource type="Texture2D" uid="uid://dy4q673rr42j4" path="res://icon.png" id="2_6h0jn"]
+
+[node name="Texture" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 172.0
+mouse_filter = 2
+script = ExtResource("1_7bpcq")
+texture = ExtResource("2_6h0jn")

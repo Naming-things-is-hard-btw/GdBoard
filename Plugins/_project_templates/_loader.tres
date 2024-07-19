@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TemplateLoader" load_steps=5 format=3 uid="uid://ds6iqcyx55dp"]
+
+[ext_resource type="Script" path="res://core/resources/project.gd" id="1_jruu4"]
+[ext_resource type="Script" path="res://core/resources/template_loader.gd" id="2_kgs25"]
+[ext_resource type="Resource" uid="uid://chn5gw65pruw1" path="res://Plugins/_project_templates/empty.res" id="2_tk0uk"]
+[ext_resource type="Resource" uid="uid://cbk1abj58gfia" path="res://Plugins/_project_templates/sample.res" id="3_lmc7q"]
+
+[resource]
+script = ExtResource("2_kgs25")
+array = Array[ExtResource("1_jruu4")]([ExtResource("2_tk0uk"), ExtResource("3_lmc7q")])
+selected = 1

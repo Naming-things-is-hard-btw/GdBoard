@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceehia7kk5hgo"]
+
+[ext_resource type="StyleBox" uid="uid://kd0g1tdack06" path="res://theme/drag.tres" id="1_1shbs"]
+
+[node name="drag" type="Button"]
+offset_right = 100.0
+offset_bottom = 43.0
+theme_override_styles/focus = ExtResource("1_1shbs")
+theme_override_styles/disabled = ExtResource("1_1shbs")
+theme_override_styles/hover = ExtResource("1_1shbs")
+theme_override_styles/pressed = ExtResource("1_1shbs")
+theme_override_styles/normal = ExtResource("1_1shbs")
+text = "dragname"

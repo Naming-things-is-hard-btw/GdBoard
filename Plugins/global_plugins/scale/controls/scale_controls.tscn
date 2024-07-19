@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://drouytp1hmran"]
+
+[ext_resource type="Script" path="res://Plugins/global_plugins/scale/controls/scale_controls.gd" id="1_tllne"]
+[ext_resource type="StyleBox" uid="uid://g1rqq8wf6rsb" path="res://Plugins/global_plugins/scale/controls/scale_controls.tres" id="2_46lsl"]
+
+[node name="ScaleControls" type="Node2D"]
+script = ExtResource("1_tllne")
+
+[node name="-x" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="+x" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="-y" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="+y" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="-xy" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="+xy" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="-x+y" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[node name="+x-y" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -33.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_46lsl")
+
+[connection signal="gui_input" from="-x" to="." method="_on_nx_gui_input"]
+[connection signal="gui_input" from="+x" to="." method="_on_px_gui_input"]
+[connection signal="gui_input" from="-y" to="." method="_on_ny_gui_input"]
+[connection signal="gui_input" from="+y" to="." method="_on_py_gui_input"]
+[connection signal="gui_input" from="-xy" to="." method="_on_nxy_gui_input"]
+[connection signal="gui_input" from="+xy" to="." method="_on_pxy_gui_input"]
+[connection signal="gui_input" from="-x+y" to="." method="_on_nxpy_gui_input"]
+[connection signal="gui_input" from="+x-y" to="." method="_on_pxny_gui_input"]

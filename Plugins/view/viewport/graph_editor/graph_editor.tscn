@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://dcocc84jdto7k"]
+
+[ext_resource type="Script" path="res://Plugins/view/viewport/graph_editor/graph_editor.gd" id="1_3ydt2"]
+[ext_resource type="Texture2D" uid="uid://q63igc7rlxdf" path="res://Plugins/view/viewport/graph_editor/grid.png" id="1_5hgxs"]
+[ext_resource type="Script" path="res://Plugins/view/viewport/graph_editor/touch_camera.gd" id="2_25fd2"]
+[ext_resource type="StyleBox" uid="uid://dlk4b1nssgaod" path="res://theme/PANEL/Grid_BG.tres" id="3_8ibug"]
+[ext_resource type="Script" path="res://Plugins/view/viewport/graph_editor/grid.gd" id="3_way1r"]
+[ext_resource type="Script" path="res://Plugins/view/viewport/viewports.gd" id="5_1galf"]
+[ext_resource type="Script" path="res://core/utility/RightClick/RightClick.gd" id="6_feylr"]
+[ext_resource type="Script" path="res://Plugins/view/viewport/graph_editor/plugin_root.gd" id="8_hr804"]
+[ext_resource type="Script" path="res://Plugins/view/viewport/graph_editor/world_manager.gd" id="8_s3klq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3hc8"]
+blend_mode = 4
+
+[node name="Graph_Editor" type="SubViewportContainer" node_paths=PackedStringArray("root_node", "subviewport", "touch_camera")]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_p3hc8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_3ydt2")
+root_node = NodePath("SubViewport/root")
+subviewport = NodePath("SubViewport")
+touch_camera = NodePath("SubViewport/TouchCamera")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+own_world_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 3
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="TouchCamera" type="Camera2D" parent="SubViewport"]
+script = ExtResource("2_25fd2")
+
+[node name="background" type="CanvasLayer" parent="SubViewport/TouchCamera"]
+layer = -1
+
+[node name="Panel" type="Panel" parent="SubViewport/TouchCamera/background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_8ibug")
+
+[node name="r_click_layer" type="CanvasLayer" parent="SubViewport/TouchCamera"]
+layer = 10
+
+[node name="right_click" type="Control" parent="SubViewport/TouchCamera/r_click_layer"]
+texture_filter = 1
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_1galf")
+
+[node name="RightClick" type="Node2D" parent="SubViewport/TouchCamera/r_click_layer/right_click"]
+script = ExtResource("6_feylr")
+can_drag = true
+drag_visible = false
+
+[node name="grid" type="Sprite2D" parent="SubViewport/TouchCamera"]
+visible = false
+self_modulate = Color(0.328125, 0.328125, 0.328125, 1)
+texture_filter = 5
+texture_repeat = 2
+scale = Vector2(5, 5)
+texture = ExtResource("1_5hgxs")
+region_enabled = true
+region_rect = Rect2(0, 0, 30.29, 0)
+region_filter_clip_enabled = true
+script = ExtResource("3_way1r")
+
+[node name="root" type="Node2D" parent="SubViewport"]
+script = ExtResource("8_s3klq")
+
+[node name="plugin_root" type="Node2D" parent="SubViewport"]
+script = ExtResource("8_hr804")
+
+[connection signal="right_click_cancel" from="SubViewport/TouchCamera/r_click_layer/right_click/RightClick" to="SubViewport/TouchCamera/r_click_layer/right_click" method="_on_right_click_right_click_cancel"]
+[connection signal="right_click_drag" from="SubViewport/TouchCamera/r_click_layer/right_click/RightClick" to="SubViewport/TouchCamera/r_click_layer/right_click" method="_on_right_click_right_click_drag"]
+[connection signal="right_click_end" from="SubViewport/TouchCamera/r_click_layer/right_click/RightClick" to="SubViewport/TouchCamera/r_click_layer/right_click" method="_on_right_click_right_click_end"]
+[connection signal="right_click_start" from="SubViewport/TouchCamera/r_click_layer/right_click/RightClick" to="SubViewport/TouchCamera/r_click_layer/right_click" method="_on_right_click_right_click_start"]
