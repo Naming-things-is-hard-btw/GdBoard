@@ -6,10 +6,10 @@ func _pressed() -> void:
 
 func _ready() -> void:
 	disabled = true
-	$"../../../projects/ScrollContainer/MarginContainer/selection_manager".on_project_select.connect(func(proj, p_name):
+	owner.selection_manager.on_project_select.connect(func(proj, p_name):
 		disabled = false
 		)
-	$"../../../projects/ScrollContainer/MarginContainer/selection_manager".on_project_unselect.connect(func():
+	owner.selection_manager.on_project_unselect.connect(func():
 		disabled = true
 		)
 	pass

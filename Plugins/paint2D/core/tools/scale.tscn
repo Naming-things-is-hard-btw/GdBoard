@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://blrugl406wdwc"]
+
+[sub_resource type="GDScript" id="GDScript_ap20p"]
+script/source = "extends DrawingBrush
+
+func get_icon() -> Texture2D:
+	return null
+
+func _ready():
+	get_tree().get_nodes_in_group(\"Paint2d_Tools\")[0].canvas_input.connect(_event)
+
+var position1 : Vector2
+var position2 : Vector2
+var old_distance : float
+var delta : float
+func _event(event):
+	if not is_in_edit: return
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			if event.index == 0:
+				position1 = event.position
+			if event.index == 1:
+				position2 = event.position
+				old_distance = position1.distance_to(position2)
+	if event is InputEventScreenDrag:
+		if event.index == 0:
+			position1 = event.position
+		if event.index == 1:
+			position2 = event.position
+			var distance = position1.distance_to(position2)
+			delta = distance / old_distance
+			old_distance = distance
+			oldimage.size *= delta
+	pass
+
+var preview : TextureRect
+var oldimage : TextureRect
+var is_in_edit = false
+func start(pos : Vector2, canvas : Node2D, _preview : TextureRect, old_image : TextureRect):
+	preview = _preview
+	preview.use_parent_material = true
+	oldimage = old_image
+	get_tree().get_nodes_in_group(\"Paint2d_Tools\")[0].is_allowed_to_cancel = false
+	is_in_edit = true
+	pass
+
+func update(pos : Vector2):
+	pass
+
+func stop():
+	get_tree().get_nodes_in_group(\"Paint2d_Tools\")[0].is_allowed_to_cancel = true
+	is_in_edit = false
+	pass
+
+func cancel():
+	pass
+"
+
+[node name="scale" type="Node2D"]
+script = SubResource("GDScript_ap20p")

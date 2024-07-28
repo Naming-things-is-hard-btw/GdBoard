@@ -1,8 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://d17msue45toij"]
-
-[ext_resource type="Texture2D" uid="uid://s483wjwatjjo" path="res://Plugins/paint2D/src/new/canvas/grid.png" id="1_uq4ep"]
-
-[resource]
-texture = ExtResource("1_uq4ep")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1

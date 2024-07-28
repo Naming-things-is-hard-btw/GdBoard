@@ -4,6 +4,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cu37"]
 bg_color = Color(0.594564, 0.692708, 0.633777, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Panel" type="Control"]
 clip_contents = true
@@ -11,6 +15,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 408.0
 offset_bottom = 282.0
+mouse_filter = 2
 script = ExtResource("1_7vj6r")
 stylebox = SubResource("StyleBoxFlat_3cu37")
 corner_radius = Vector4(20, 20, 20, 20)

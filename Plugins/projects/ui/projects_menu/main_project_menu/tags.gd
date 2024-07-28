@@ -5,7 +5,7 @@ func _refresh():
 	for a in $HBoxContainer.get_children():
 		a.queue_free()
 	tags.clear()
-	for a in $"../../../projects/ScrollContainer/MarginContainer/selection_manager".get_children():
+	for a in owner.selection_manager.get_children():
 		var proj : BlokiProject = a.project
 		for tag in proj.tags:
 			if tags.find(tag) == -1: tags.append(tag)
@@ -32,7 +32,7 @@ func _search(tagname):
 			a.icon = preload("res://theme/modern_icons/radio_button_checked.svg")
 		else:
 			a.icon = preload("res://theme/modern_icons/radio_button_unchecked.svg")
-	for a in $"../../../projects/ScrollContainer/MarginContainer/selection_manager".get_children():
+	for a in owner.selection_manager.get_children():
 		var proj : BlokiProject = a.project
 		a.visible = proj.tags.find(tagname) != -1
 		if tagname == "All": a.visible = true

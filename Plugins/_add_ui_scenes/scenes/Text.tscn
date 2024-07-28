@@ -5,8 +5,11 @@
 [node name="Text" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 533.0
-offset_bottom = 169.0
+offset_right = 648.0
+offset_bottom = 204.0
+mouse_filter = 2
 script = ExtResource("1_d3htf")
 text = "New Text"
 text_size = 110
+h_allign = 1
+v_allign = 1

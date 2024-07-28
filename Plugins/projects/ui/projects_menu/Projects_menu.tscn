@@ -40,7 +40,7 @@ shadow_color = Color(0, 0, 0, 0.176471)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76syb"]
 
-[node name="Projects_menu" type="PanelContainer"]
+[node name="Projects_menu" type="PanelContainer" node_paths=PackedStringArray("selection_manager", "tags")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -52,6 +52,8 @@ size_flags_stretch_ratio = 4.0
 mouse_force_pass_scroll_events = false
 theme_override_styles/panel = ExtResource("1_qa4p0")
 script = ExtResource("1_e4e62")
+selection_manager = NodePath("main_project_menu/projects/Control/ScrollContainer/MarginContainer/selection_manager")
+tags = NodePath("main_project_menu/tags_refresh/HBoxContainer/tags")
 
 [node name="main_project_menu" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -100,7 +102,56 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5f1fq")
 script = ExtResource("4_f6i2j")
 
-[node name="no_project" type="Label" parent="main_project_menu/projects"]
+[node name="Control" type="Control" parent="main_project_menu/projects"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="main_project_menu/projects/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="main_project_menu/projects/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="selection_manager" type="BoxContainer" parent="main_project_menu/projects/Control/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+script = ExtResource("5_iexo7")
+
+[node name="no_project" type="CenterContainer" parent="main_project_menu/projects/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="main_project_menu/projects/Control/no_project"]
+layout_mode = 2
+vertical = true
+
+[node name="new" type="Button" parent="main_project_menu/projects/Control/no_project/BoxContainer" node_paths=PackedStringArray("new_project", "main_project_menu")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "New Project"
+icon = ExtResource("14_etq50")
+expand_icon = true
+script = ExtResource("8_w5yvx")
+new_project = NodePath("../../../../../../new_project")
+main_project_menu = NodePath("../../../../..")
+
+[node name="no_project" type="Label" parent="main_project_menu/projects/Control/no_project/BoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -108,24 +159,7 @@ theme_override_colors/font_color = Color(0.580392, 0.580392, 0.580392, 1)
 text = "Cant find any GdBoard Projects, please Create a Project to start working!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="main_project_menu/projects"]
-layout_mode = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="main_project_menu/projects/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="selection_manager" type="BoxContainer" parent="main_project_menu/projects/ScrollContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_constants/separation = 10
-script = ExtResource("5_iexo7")
+autowrap_mode = 2
 
 [node name="down_toolbar" type="PanelContainer" parent="main_project_menu"]
 layout_mode = 2
@@ -159,11 +193,13 @@ text = "Delete"
 icon = ExtResource("12_21p7v")
 script = ExtResource("7_a5p3a")
 
-[node name="new" type="Button" parent="main_project_menu/down_toolbar/HBoxContainer"]
+[node name="new" type="Button" parent="main_project_menu/down_toolbar/HBoxContainer" node_paths=PackedStringArray("new_project", "main_project_menu")]
 layout_mode = 2
 text = "New Project"
 icon = ExtResource("14_etq50")
 script = ExtResource("8_w5yvx")
+new_project = NodePath("../../../../new_project")
+main_project_menu = NodePath("../../..")
 
 [node name="new_project" type="VBoxContainer" parent="."]
 visible = false
@@ -355,7 +391,7 @@ script = ExtResource("18_6v1ih")
 size = Vector2i(225, 136)
 dialog_text = "project already exists"
 
-[connection signal="double_click" from="main_project_menu/projects/ScrollContainer/MarginContainer/selection_manager" to="main_project_menu/projects/ScrollContainer/MarginContainer/selection_manager" method="_on_selection_manager_double_click"]
+[connection signal="double_click" from="main_project_menu/projects/Control/ScrollContainer/MarginContainer/selection_manager" to="main_project_menu/projects/Control/ScrollContainer/MarginContainer/selection_manager" method="_on_selection_manager_double_click"]
 [connection signal="visibility_changed" from="new_project" to="new_project/project_info/HBoxContainer/VBoxContainer/templates/template" method="_on_new_project_visibility_changed"]
 [connection signal="item_selected" from="new_project/project_info/HBoxContainer/VBoxContainer/templates/template" to="new_project/project_info/HBoxContainer/VBoxContainer/templates/template" method="_on_item_selected"]
 [connection signal="file_selected" from="export project" to="export project" method="_on_export"]

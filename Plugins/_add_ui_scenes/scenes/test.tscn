@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://core/nodes/BlokiText.gd" id="2_3bd1p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3bby"]
-bg_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
+bg_color = Color(0.405793, 0.723958, 0.413374, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="b" type="Control"]
 clip_contents = true
@@ -19,19 +19,18 @@ offset_bottom = 707.582
 mouse_filter = 2
 script = ExtResource("1_qh5rl")
 stylebox = SubResource("StyleBoxFlat_e3bby")
-corner_radius = Vector4(100, 100, 100, 100)
-folded = false
+corner_radius = Vector4(20, 20, 20, 20)
 
 [node name="Text" type="Control" parent="."]
 clip_contents = true
-anchors_preset = 0
-offset_left = 50.4375
-offset_top = 56.4121
-offset_right = 887.271
-offset_bottom = 230.043
+layout_mode = 1
+anchor_right = 0.999
+offset_left = 2.0
+offset_right = 0.303589
+offset_bottom = 192.0
 mouse_filter = 2
 script = ExtResource("2_3bd1p")
 text = "New Text Label"
 text_size = 108
-text_color = Color(1, 1, 1, 1)
-folded = false
+h_allign = 1
+v_allign = 1

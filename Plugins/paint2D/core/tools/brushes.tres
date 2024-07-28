@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BrushLoader" load_steps=12 format=3 uid="uid://b7j18nhnt8634"]
+
+[ext_resource type="PackedScene" uid="uid://bmnooy7lgdho5" path="res://Plugins/paint2D/core/tools/line.tscn" id="1_4o3wv"]
+[ext_resource type="Script" path="res://Plugins/paint2D/core/classes/BrushLoader.gd" id="1_vdiwa"]
+[ext_resource type="PackedScene" uid="uid://bonfqq3jw6bcl" path="res://Plugins/paint2D/core/tools/eraser.tscn" id="2_0vg0l"]
+[ext_resource type="PackedScene" uid="uid://ffru8gj3cimo" path="res://Plugins/paint2D/core/tools/aditive_line.tscn" id="3_5dsj0"]
+[ext_resource type="PackedScene" uid="uid://7h2brkt70w3a" path="res://Plugins/paint2D/core/tools/aditive_eraser.tscn" id="4_bu7w6"]
+[ext_resource type="PackedScene" uid="uid://vdq3ffbpn4te" path="res://Plugins/paint2D/core/tools/euler.tscn" id="5_pcd6j"]
+[ext_resource type="PackedScene" uid="uid://edesldi5t1i3" path="res://Plugins/paint2D/core/tools/box.tscn" id="6_fmc3r"]
+[ext_resource type="PackedScene" uid="uid://nntcugd3j03l" path="res://Plugins/paint2D/core/tools/triangle.tscn" id="7_t5f2d"]
+[ext_resource type="PackedScene" uid="uid://dnvpcext5be" path="res://Plugins/paint2D/core/tools/rotate.tscn" id="8_8l435"]
+[ext_resource type="PackedScene" uid="uid://blrugl406wdwc" path="res://Plugins/paint2D/core/tools/scale.tscn" id="9_6n4xi"]
+[ext_resource type="PackedScene" uid="uid://b4fv23dpbo3gi" path="res://Plugins/paint2D/core/tools/move.tscn" id="10_7dyra"]
+
+[resource]
+script = ExtResource("1_vdiwa")
+Brush_array = Array[PackedScene]([ExtResource("1_4o3wv"), ExtResource("2_0vg0l"), ExtResource("3_5dsj0"), ExtResource("4_bu7w6"), ExtResource("5_pcd6j"), ExtResource("6_fmc3r"), ExtResource("7_t5f2d"), ExtResource("8_8l435"), ExtResource("9_6n4xi"), ExtResource("10_7dyra")])

@@ -1,0 +1,146 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsa25j6hjqqe2"]
+
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/createnewCanvas/newcanvas.gd" id="1_80160"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oh1td"]
+
+[sub_resource type="GDScript" id="GDScript_mi4jw"]
+script/source = "extends ColorPickerButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	get_popup().get_child(0).hex_visible = false
+	get_popup().get_child(0).picker_shape = 2
+func _pressed():
+	pass
+func _on_color_changed(_color):
+	get_tree().get_nodes_in_group(\"Draw2d_Global\")[0].brush_color = _color
+"
+
+[sub_resource type="GDScript" id="GDScript_x04c0"]
+script/source = "extends Button
+
+
+func _pressed():
+	get_window().hide()
+"
+
+[sub_resource type="GDScript" id="GDScript_xcxrm"]
+script/source = "extends Button
+
+func _pressed():
+	var x = $\"../../../Control/BoxContainer/BoxContainer/x\".value
+	var y = $\"../../../Control/BoxContainer/BoxContainer/y\".value
+	$\"../../../..\".create.emit(Vector2(x,y), $\"../../../Control/BoxContainer/BoxContainer2/ColorPickerButton\".color)
+	get_window().hide()
+"
+
+[node name="Control" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_80160")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+vertical = true
+
+[node name="Control" type="Control" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/Control/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainer/Control/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "size   "
+
+[node name="x" type="SpinBox" parent="BoxContainer/Control/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10000.0
+value = 200.0
+
+[node name="y" type="SpinBox" parent="BoxContainer/Control/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10000.0
+value = 100.0
+
+[node name="BoxContainer2" type="BoxContainer" parent="BoxContainer/Control/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainer/Control/BoxContainer/BoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="BoxContainer/Control/BoxContainer/BoxContainer2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oh1td")
+color = Color(1, 1, 1, 1)
+script = SubResource("GDScript_mi4jw")
+
+[node name="Control" type="Control" parent="BoxContainer/Control/BoxContainer/BoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Control2" type="Control" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = -8.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cancel" type="Button" parent="BoxContainer/Control2/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "cancel"
+script = SubResource("GDScript_x04c0")
+
+[node name="accept" type="Button" parent="BoxContainer/Control2/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "accept"
+script = SubResource("GDScript_xcxrm")
+
+[node name="Control3" type="Control" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1

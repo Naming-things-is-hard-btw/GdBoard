@@ -1,5 +1,9 @@
 extends Control
 
+@export var selection_manager : project_selection_manager
+@export var tags : Control
+
+
 func _ready() -> void:
 	Projects.refresh_projects.connect(_refresh)
 	pass
@@ -7,7 +11,7 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			$main_project_menu/projects/ScrollContainer/MarginContainer/selection_manager.unselect_all()
+			selection_manager.unselect_all()
 			pass
 		pass
 	pass

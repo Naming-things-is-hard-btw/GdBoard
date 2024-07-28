@@ -92,6 +92,8 @@ func save_project():
 	current_project.camera_pos = ApiNodes.TouchCamera2D.position
 	current_project.camera_scale = ApiNodes.TouchCamera2D.cam_zoom.x
 	current_project.icon = image
+	if not DirAccess.dir_exists_absolute(current_project.resource_path):
+		DirAccess.make_dir_recursive_absolute(current_project.resource_path.get_base_dir())
 	ResourceSaver.save(current_project, current_project.resource_path, ResourceSaver.FLAG_COMPRESS)
 	pass
 

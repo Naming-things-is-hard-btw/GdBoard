@@ -1,0 +1,285 @@
+[gd_scene load_steps=25 format=3 uid="uid://blyca1hsp3ds0"]
+
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/drawing.gd" id="1_sagsm"]
+[ext_resource type="StyleBox" uid="uid://da7kp4v152h16" path="res://theme/PANEL/panel_out.tres" id="1_uep4n"]
+[ext_resource type="Texture2D" uid="uid://31h8mec8m55y" path="res://theme/modern_icons/folder_open.svg" id="4_1mu8i"]
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/new.gd" id="6_71wcb"]
+[ext_resource type="Texture2D" uid="uid://brfyctuyv5u07" path="res://theme/modern_icons/create_new.svg" id="6_aax7p"]
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/import.gd" id="8_jxxp5"]
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/open.gd" id="8_ml8af"]
+[ext_resource type="PackedScene" uid="uid://b8ph8crvv4l3m" path="res://Plugins/paint2D/core/canvas/canvas.res" id="8_p8oku"]
+[ext_resource type="Texture2D" uid="uid://d4ijag8k0w5xn" path="res://theme/modern_icons/import.svg" id="9_cgs1s"]
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/export.gd" id="9_x3wfr"]
+[ext_resource type="Texture2D" uid="uid://4gwy3j2yh75c" path="res://theme/modern_icons/export.svg" id="11_vhnm7"]
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/done.gd" id="13_ar56o"]
+[ext_resource type="Texture2D" uid="uid://c0sn3nwjwdl3h" path="res://theme/modern_icons/done.svg" id="17_egecg"]
+[ext_resource type="PackedScene" uid="uid://sb2156au3cbs" path="res://Plugins/paint2D/ui/Drawing/LayersUI/Layers.tscn" id="18_c5fs0"]
+[ext_resource type="PackedScene" uid="uid://bsa25j6hjqqe2" path="res://Plugins/paint2D/ui/Drawing/createnewCanvas/newcanvas.tscn" id="19_opjb7"]
+[ext_resource type="Texture2D" uid="uid://yme7k0ju3l1b" path="res://theme/modern_icons/draw.svg" id="19_tamv1"]
+[ext_resource type="Script" path="res://Plugins/paint2D/ui/Drawing/brush_button.gd" id="20_jdgcm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_extvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_huhib"]
+content_margin_left = 30.0
+content_margin_right = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn170"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.19)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.5, 0.241)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4yv4"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.771546, 0.325871, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.228171, 1, 0.527476, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tx8t"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.843959, 0.356455, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36847, 1, 0.613369, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="GDScript" id="GDScript_vanmu"]
+script/source = "extends Button
+
+func _pressed():
+	var rect = get_global_rect()
+	rect.position.y -= $PopupPanel.size.y
+	$PopupPanel.popup_on_parent(rect)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq6cf"]
+bg_color = Color(0, 0, 0, 0.623529)
+
+[node name="Drawing" type="PanelContainer" node_paths=PackedStringArray("canvas")]
+texture_filter = 1
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = ExtResource("1_uep4n")
+script = ExtResource("1_sagsm")
+canvas = NodePath("Control/Canvas")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Canvas" parent="Control" instance=ExtResource("8_p8oku")]
+clip_contents = true
+layout_mode = 1
+size_flags_vertical = 3
+metadata/hahaha = false
+
+[node name="SubViewport" parent="Control/Canvas" index="0"]
+size = Vector2i(1142, 638)
+
+[node name="top_panel" type="BoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="open" type="Button" parent="Control/top_panel" node_paths=PackedStringArray("canvas")]
+layout_mode = 2
+text = "Open"
+icon = ExtResource("4_1mu8i")
+script = ExtResource("8_ml8af")
+canvas = NodePath("../../Canvas")
+
+[node name="FileDialog" type="FileDialog" parent="Control/top_panel/open"]
+auto_translate_mode = 1
+title = "Open a File"
+position = Vector2i(80, 115)
+size = Vector2i(709, 391)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="New" type="Button" parent="Control/top_panel" node_paths=PackedStringArray("canvas")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New"
+icon = ExtResource("6_aax7p")
+expand_icon = true
+script = ExtResource("6_71wcb")
+canvas = NodePath("../../Canvas")
+
+[node name="Window" type="Window" parent="Control/top_panel/New"]
+initial_position = 2
+size = Vector2i(285, 220)
+visible = false
+
+[node name="Control" parent="Control/top_panel/New/Window" instance=ExtResource("19_opjb7")]
+
+[node name="Control" type="Control" parent="Control/top_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="import" type="Button" parent="Control/top_panel" node_paths=PackedStringArray("canvas")]
+layout_mode = 2
+text = "Import"
+icon = ExtResource("9_cgs1s")
+script = ExtResource("8_jxxp5")
+canvas = NodePath("../../Canvas")
+
+[node name="FileDialog" type="FileDialog" parent="Control/top_panel/import"]
+title = "Open a File"
+position = Vector2i(80, 115)
+size = Vector2i(709, 391)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="export" type="Button" parent="Control/top_panel" node_paths=PackedStringArray("canvas")]
+layout_mode = 2
+text = "Export"
+icon = ExtResource("11_vhnm7")
+script = ExtResource("9_x3wfr")
+canvas = NodePath("../../Canvas")
+
+[node name="FileDialog" type="FileDialog" parent="Control/top_panel/export"]
+auto_translate_mode = 1
+position = Vector2i(80, 115)
+size = Vector2i(769, 391)
+ok_button_text = "Save"
+access = 2
+root_subfolder = "/sdcard"
+filters = PackedStringArray("*.png", "*.jpg")
+use_native_dialog = true
+
+[node name="done" type="Button" parent="Control/top_panel"]
+layout_mode = 2
+text = "Done"
+icon = ExtResource("17_egecg")
+script = ExtResource("13_ar56o")
+
+[node name="bottom_panel" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_extvj")
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/bottom_panel"]
+layout_mode = 2
+
+[node name="brush" type="Button" parent="Control/bottom_panel/BoxContainer"]
+layout_mode = 2
+icon = ExtResource("19_tamv1")
+script = ExtResource("20_jdgcm")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/bottom_panel/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_huhib")
+
+[node name="HSlider" type="HSlider" parent="Control/bottom_panel/BoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 15.0
+theme_override_styles/slider = SubResource("StyleBoxFlat_dn170")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_w4yv4")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1tx8t")
+min_value = 1.0
+max_value = 300.0
+value = 1.0
+exp_edit = true
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Control/bottom_panel/BoxContainer/PanelContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="layersButton" type="Button" parent="Control/bottom_panel/BoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+icon_alignment = 1
+expand_icon = true
+script = SubResource("GDScript_vanmu")
+
+[node name="PopupPanel" type="PopupPanel" parent="Control/bottom_panel/BoxContainer/layersButton"]
+size = Vector2i(370, 420)
+
+[node name="Layers" parent="Control/bottom_panel/BoxContainer/layersButton/PopupPanel" node_paths=PackedStringArray("drawing_panel") instance=ExtResource("18_c5fs0")]
+custom_minimum_size = Vector2(360, 400)
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 368.0
+offset_bottom = 418.0
+drawing_panel = NodePath("../../../../../Canvas/SubViewport/origin/frame")
+
+[node name="selectnode" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_fq6cf")
+
+[node name="Label" type="Label" parent="Control/selectnode"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Select a Texture Node to Edit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="file_selected" from="Control/top_panel/open/FileDialog" to="Control/top_panel/open" method="_on_file_dialog_file_selected"]
+[connection signal="create" from="Control/top_panel/New/Window/Control" to="." method="_on_control_create"]
+[connection signal="file_selected" from="Control/top_panel/import/FileDialog" to="Control/top_panel/import" method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="Control/top_panel/export/FileDialog" to="Control/top_panel/export" method="_on_file_dialog_file_selected"]
+
+[editable path="Control/Canvas"]

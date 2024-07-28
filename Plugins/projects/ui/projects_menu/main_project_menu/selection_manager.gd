@@ -1,4 +1,4 @@
-extends Control
+class_name project_selection_manager extends Control
 
 var selected : BlokiProject = null
 var selected_name : String
