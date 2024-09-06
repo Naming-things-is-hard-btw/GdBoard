@@ -38,8 +38,8 @@ func get_current_tool() -> DrawingBrush:
 	return get_node_or_null(current_tool)
 
 func _ready():
-	await get_tree().process_frame
-	preload("res://Plugins/paint2D/src/new/tools/brushes.tres").load_brushes(self)
+	#await get_tree().process_frame
+	#preload("res://Plugins/paint2D/src/new/tools/brushes.tres").load_brushes(self)
 	pass
 
 
